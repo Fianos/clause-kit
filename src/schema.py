@@ -8,6 +8,7 @@ class Docref(BaseModel):
     article: str
     section: str
     url: str
+    provision_uri: str | None = None  # AKN FRBR URI (AU) or ELI URI (EU)
 
 
 class Rule(BaseModel):

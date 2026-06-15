@@ -28,6 +28,30 @@ Fact variables for NDB scheme:
 """,
 }
 
+# Provision URI guidance per domain for the docref.provision_uri field.
+# EU AI Act uses ELI (European Legislation Identifier).
+# Australian NDB scheme uses AKN FRBR URI (Akoma Ntoso / OASIS LegalDocML).
+DOMAIN_PROVISION_URI_GUIDANCE = {
+    "eu-ai-act": """
+provision_uri: ELI URI for this provision. Format: http://data.europa.eu/eli/reg/2024/1689/{fragment}
+Examples:
+  Article 5      → http://data.europa.eu/eli/reg/2024/1689/art_5
+  Article 5(1)   → http://data.europa.eu/eli/reg/2024/1689/art_5/par_1
+  Article 6      → http://data.europa.eu/eli/reg/2024/1689/art_6
+  Annex I        → http://data.europa.eu/eli/reg/2024/1689/anx_1
+  Annex III      → http://data.europa.eu/eli/reg/2024/1689/anx_3
+""",
+    "ndb": """
+provision_uri: AKN FRBR URI (Akoma Ntoso) for this provision. Format: /akn/au/act/1988-119/{fragment}
+The Privacy Act 1988 is Act No. 119 of 1988.
+Examples:
+  Section 26WA   → /akn/au/act/1988-119/section/26WA
+  Section 26WE   → /akn/au/act/1988-119/section/26WE
+  Section 26WG   → /akn/au/act/1988-119/section/26WG
+  Section 26WL   → /akn/au/act/1988-119/section/26WL
+""",
+}
+
 SYSTEM_PROMPT = """You extract legislative rules into structured JSON.
 Return a JSON array of rule objects. Each rule must use only the provided fact schema variables in conditions.
 If a rule cannot be expressed as a deterministic condition (vague standard, judgment call), set condition to null and codifiability to "low".
@@ -45,7 +69,7 @@ def extract_rules_from_chunk(
         client = anthropic.Anthropic()
 
     fact_schema = DOMAIN_FACT_SCHEMAS[domain]
-
+    provision_uri_guidance = DOMAIN_PROVISION_URI_GUIDANCE[domain]
     rule_schema = json.dumps(Rule.model_json_schema(), indent=2)
 
     resp = client.messages.create(
@@ -57,10 +81,12 @@ def extract_rules_from_chunk(
             "content": (
                 f"DEFINITIONS:\n{definitions}\n\n"
                 f"FACT SCHEMA:\n{fact_schema}\n\n"
+                f"PROVISION URI GUIDANCE:\n{provision_uri_guidance}\n\n"
                 f"RULE SCHEMA (each object in the array must match exactly):\n{rule_schema}\n\n"
                 f"ARTICLE: {chunk['article_label']}\n\n"
                 f"{chunk['text'][:8000]}\n\n"
-                "Extract all distinct rules from this article as a JSON array."
+                "Extract all distinct rules from this article as a JSON array. "
+                "Populate provision_uri for every rule using the guidance above."
             ),
         }],
     )
