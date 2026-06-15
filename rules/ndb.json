@@ -5,36 +5,25 @@
   "source_url": "https://www.legislation.gov.au/Details/C2024C00091",
   "rules": [
     {
-      "rule_id": "26WA_eligible_breach_access_disclosure_loss",
-      "label": "Eligible data breach requires unauthorised access, disclosure or loss",
+      "rule_id": "26WA-eligible-data-breach-definition",
+      "label": "Eligible data breach definition",
       "condition": {
-        "in": [
+        "and": [
           {
-            "var": "incident_type"
-          },
-          [
-            "unauthorised_access",
-            "unauthorised_disclosure",
-            "loss"
-          ]
+            "in": [
+              {
+                "var": "incident_type"
+              },
+              [
+                "unauthorised_access",
+                "unauthorised_disclosure",
+                "loss"
+              ]
+            ]
+          }
         ]
       },
-      "obligation": "The incident must involve unauthorised access to, unauthorised disclosure of, or loss of, personal information held by an entity to potentially constitute an eligible data breach.",
-      "scope": "Entities holding personal information under the NDB scheme",
-      "exceptions": [],
-      "codifiability": "high",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WA",
-        "section": "Guide to this Part",
-        "url": ""
-      }
-    },
-    {
-      "rule_id": "26WA_serious_harm_requirement",
-      "label": "Eligible data breach requires likelihood of serious harm",
-      "condition": null,
-      "obligation": "The access, disclosure or loss must be likely to result in serious harm to any of the individuals to whom the information relates for it to be an eligible data breach.",
+      "obligation": "An eligible data breach happens if there is unauthorised access to, unauthorised disclosure of, or loss of, personal information held by an entity, and the access, disclosure or loss is likely to result in serious harm to any of the individuals to whom the information relates.",
       "scope": "Entities holding personal information under the NDB scheme",
       "exceptions": [],
       "codifiability": "low",
@@ -42,14 +31,15 @@
         "source_doc": "Privacy Act 1988",
         "article": "26WA",
         "section": "Guide to this Part",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00099",
+        "provision_uri": "/akn/au/act/1988-119/section/26WA"
       }
     },
     {
-      "rule_id": "26WA_notification_reasonable_grounds",
-      "label": "Notification required on reasonable grounds to believe breach occurred",
+      "rule_id": "26WA-notification-obligation",
+      "label": "Obligation to notify eligible data breach",
       "condition": null,
-      "obligation": "An entity must give a notification if it has reasonable grounds to believe that an eligible data breach has happened.",
+      "obligation": "An entity must give a notification if it has reasonable grounds to believe that an eligible data breach has happened, or if it is directed to do so by the Commissioner.",
       "scope": "Entities subject to the NDB scheme",
       "exceptions": [],
       "codifiability": "low",
@@ -57,87 +47,77 @@
         "source_doc": "Privacy Act 1988",
         "article": "26WA",
         "section": "Guide to this Part",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00099",
+        "provision_uri": "/akn/au/act/1988-119/section/26WA"
       }
     },
     {
-      "rule_id": "26WA_notification_commissioner_direction",
-      "label": "Notification required when directed by Commissioner",
-      "condition": null,
-      "obligation": "An entity must give a notification if it is directed to do so by the Commissioner.",
-      "scope": "Entities subject to the NDB scheme",
-      "exceptions": [],
-      "codifiability": "low",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WA",
-        "section": "Guide to this Part",
-        "url": ""
-      }
-    },
-    {
-      "rule_id": "26WA_commissioner_information_powers",
-      "label": "Commissioner may obtain information or documents on actual or suspected breaches",
+      "rule_id": "26WA-commissioner-information-power",
+      "label": "Commissioner may obtain information or documents",
       "condition": null,
       "obligation": "The Commissioner may obtain information or documents in relation to actual or suspected eligible data breaches.",
-      "scope": "Information Commissioner and entities under the NDB scheme",
+      "scope": "Office of the Australian Information Commissioner",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WA",
         "section": "Guide to this Part",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00099",
+        "provision_uri": "/akn/au/act/1988-119/section/26WA"
       }
     },
     {
-      "rule_id": "26WB_entity_includes_file_number_recipient",
+      "rule_id": "26WB-entity-definition",
       "label": "Entity includes file number recipient",
       "condition": null,
-      "obligation": "For the purposes of this Part, the term 'entity' includes a person who is a file number recipient.",
-      "scope": "Definitional provision applying to the NDB Part",
+      "obligation": "For the purposes of this Part, the term 'entity' is to be construed as including a person who is a file number recipient.",
+      "scope": "Definitional provision applying to Part IIIC of the Privacy Act 1988 (NDB scheme).",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WB",
         "section": "26WB",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2014A00119",
+        "provision_uri": "/akn/au/act/1988-119/section/26WB"
       }
     },
     {
       "rule_id": "26WC-1",
-      "label": "Deemed holding of information disclosed to overseas recipient",
+      "label": "Deemed holding of personal information disclosed to overseas recipient",
       "condition": null,
-      "obligation": "Where an APP entity has disclosed personal information to an overseas recipient under APP 8.1 and the overseas recipient holds the information, this Part has effect as if the personal information were held by the APP entity and the APP entity were required under section 15 not to breach APP 11.1 in relation to that information.",
-      "scope": "APP entities that disclose personal information to overseas recipients under APP 8.1",
+      "obligation": "Where an APP entity has disclosed personal information about individuals to an overseas recipient, APP 8.1 applied to that disclosure, and the overseas recipient holds the information, this Part has effect as if the information were held by the APP entity and the APP entity were required under section 15 not to breach APP 11.1 in relation to the information.",
+      "scope": "APP entities that have disclosed personal information to overseas recipients under APP 8.1",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WC",
         "section": "26WC(1)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2018C00292",
+        "provision_uri": "/akn/au/act/1988-119/section/26WC"
       }
     },
     {
       "rule_id": "26WC-2",
       "label": "Deemed holding of credit eligibility information disclosed to bodies with no Australian link",
       "condition": null,
-      "obligation": "Where a credit provider has disclosed credit eligibility information under paragraph 21G(3)(b) or (c) or subsection 21M(1) to a related body corporate, body or person with no Australian link, and that recipient holds the information, this Part has effect as if the credit eligibility information were held by the credit provider and the credit provider were required to comply with subsection 21S(1) in relation to that information.",
-      "scope": "Credit providers disclosing credit eligibility information to bodies or persons with no Australian link",
+      "obligation": "Where a credit provider has disclosed credit eligibility information about individuals to a related body corporate, body or person with no Australian link (under paragraph 21G(3)(b) or (c) or subsection 21M(1)) and that recipient holds the information, this Part has effect as if the information were held by the credit provider and the credit provider were required to comply with subsection 21S(1) in relation to the information.",
+      "scope": "Credit providers that have disclosed credit eligibility information to bodies or persons with no Australian link",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WC",
         "section": "26WC(2)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2018C00292",
+        "provision_uri": "/akn/au/act/1988-119/section/26WC"
       }
     },
     {
-      "rule_id": "26WD_my_health_records_exception",
-      "label": "Exception for breaches notified under My Health Records Act 2012",
+      "rule_id": "26WD-1",
+      "label": "Exception for My Health Records Act notification",
       "condition": {
         "in": [
           {
@@ -150,20 +130,21 @@
           ]
         ]
       },
-      "obligation": "This Part (the NDB scheme) does not apply in relation to the access, disclosure or loss where it has been, or is required to be, notified under section 75 of the My Health Records Act 2012.",
-      "scope": "Unauthorised access, unauthorised disclosure, or loss of information that has been or is required to be notified under section 75 of the My Health Records Act 2012.",
+      "obligation": "This Part (NDB scheme) does not apply in relation to the access, disclosure or loss if it has been, or is required to be, notified under section 75 of the My Health Records Act 2012.",
+      "scope": "Information incidents already covered by My Health Records Act 2012 notification requirements",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WD",
-        "section": "Exception\u2014notification under the My Health Records Act 2012",
-        "url": ""
+        "section": "26WD",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WD"
       }
     },
     {
-      "rule_id": "26WE-2-a",
-      "label": "Eligible data breach via unauthorised access or disclosure likely to result in serious harm",
+      "rule_id": "26WE-2-a-access-disclosure",
+      "label": "Eligible data breach via unauthorised access or disclosure with likely serious harm",
       "condition": {
         "and": [
           {
@@ -179,134 +160,104 @@
           }
         ]
       },
-      "obligation": "Where there is unauthorised access to or unauthorised disclosure of the information and a reasonable person would conclude it would be likely to result in serious harm to any affected individual, the access or disclosure is an eligible data breach.",
-      "scope": "APP entities, credit reporting bodies, credit providers, and file number recipients holding relevant information",
+      "obligation": "Where there is unauthorised access to or unauthorised disclosure of the information and a reasonable person would conclude the access or disclosure would be likely to result in serious harm to any affected individual, this constitutes an eligible data breach and the individual is at risk from it.",
+      "scope": "APP entities, credit reporting bodies, credit providers and file number recipients holding relevant personal/credit/tax file number information",
       "exceptions": [
-        "Subject to section 26WF (remedial action exception)"
+        "Subject to section 26WF (remedial action)"
       ],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WE",
         "section": "26WE(2)(a)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2018C00292",
+        "provision_uri": "/akn/au/act/1988-119/section/26WE"
       }
     },
     {
-      "rule_id": "26WE-2-b",
-      "label": "Eligible data breach via loss where unauthorised access/disclosure likely and serious harm likely",
+      "rule_id": "26WE-2-b-loss",
+      "label": "Eligible data breach via loss likely to result in unauthorised access/disclosure and serious harm",
       "condition": {
-        "==": [
+        "and": [
           {
-            "var": "incident_type"
-          },
-          "loss"
+            "==": [
+              {
+                "var": "incident_type"
+              },
+              "loss"
+            ]
+          }
         ]
       },
-      "obligation": "Where information is lost in circumstances where unauthorised access or disclosure is likely to occur, and a reasonable person would conclude that such access or disclosure would be likely to result in serious harm to any affected individual, the loss is an eligible data breach.",
-      "scope": "APP entities, credit reporting bodies, credit providers, and file number recipients holding relevant information",
+      "obligation": "Where information is lost in circumstances where unauthorised access or disclosure is likely to occur and, assuming such access or disclosure occurred, a reasonable person would conclude it would be likely to result in serious harm to any affected individual, this constitutes an eligible data breach and the individual is at risk from it.",
+      "scope": "APP entities, credit reporting bodies, credit providers and file number recipients holding relevant personal/credit/tax file number information",
       "exceptions": [
-        "Subject to section 26WF (remedial action exception)"
+        "Subject to section 26WF (remedial action)"
       ],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WE",
         "section": "26WE(2)(b)",
-        "url": ""
-      }
-    },
-    {
-      "rule_id": "26WE-2-d",
-      "label": "Individual at risk from eligible data breach",
-      "condition": null,
-      "obligation": "An individual to whom the information relates and who would be likely to suffer serious harm is at risk from the eligible data breach.",
-      "scope": "Individuals to whom the breached information relates",
-      "exceptions": [],
-      "codifiability": "low",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WE",
-        "section": "26WE(2)(d)",
-        "url": ""
-      }
-    },
-    {
-      "rule_id": "26WE-1",
-      "label": "Scope of section - entities required to protect held information",
-      "condition": null,
-      "obligation": "This section applies where an APP entity, credit reporting body, credit provider, or file number recipient holds relevant personal/credit/tax file number information and is required to comply with the applicable protection obligation.",
-      "scope": "APP entities (APP 11.1), credit reporting bodies (s20Q), credit providers (s21S(1)), file number recipients (s17 rule)",
-      "exceptions": [],
-      "codifiability": "low",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WE",
-        "section": "26WE(1)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2018C00292",
+        "provision_uri": "/akn/au/act/1988-119/section/26WE"
       }
     },
     {
       "rule_id": "26WF-1",
       "label": "Remedial action for access/disclosure prevents eligible data breach",
       "condition": {
-        "and": [
+        "in": [
           {
-            "in": [
-              {
-                "var": "incident_type"
-              },
-              [
-                "unauthorised_access",
-                "unauthorised_disclosure"
-              ]
-            ]
-          }
+            "var": "incident_type"
+          },
+          [
+            "unauthorised_access",
+            "unauthorised_disclosure"
+          ]
         ]
       },
-      "obligation": "If the entity takes remedial action before the access or disclosure results in serious harm, and as a result a reasonable person would conclude serious harm is no longer likely, the access or disclosure is taken never to have been an eligible data breach of the entity or any other entity.",
-      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients experiencing unauthorised access or disclosure",
+      "obligation": "Where an APP entity takes remedial action in relation to an unauthorised access or disclosure before it results in serious harm, and as a result a reasonable person would conclude the access or disclosure would not be likely to result in serious harm to any affected individual, the access or disclosure is taken never to have been an eligible data breach.",
+      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WF",
-        "section": "(1)",
-        "url": ""
+        "section": "26WF(1)",
+        "url": "https://www.legislation.gov.au/C2004A03712",
+        "provision_uri": "/akn/au/act/1988-119/section/26WF"
       }
     },
     {
       "rule_id": "26WF-2",
       "label": "Remedial action for access/disclosure removes notification requirement for particular individual",
       "condition": {
-        "and": [
+        "in": [
           {
-            "in": [
-              {
-                "var": "incident_type"
-              },
-              [
-                "unauthorised_access",
-                "unauthorised_disclosure"
-              ]
-            ]
-          }
+            "var": "incident_type"
+          },
+          [
+            "unauthorised_access",
+            "unauthorised_disclosure"
+          ]
         ]
       },
-      "obligation": "If the entity takes remedial action before the access or disclosure results in serious harm to a particular individual, and as a result a reasonable person would conclude serious harm to that individual is no longer likely, this Part does not require the entity or any other entity to notify that individual of the statement contents.",
-      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients experiencing unauthorised access or disclosure",
+      "obligation": "Where remedial action is taken before serious harm results to a particular individual, and as a result a reasonable person would conclude the access or disclosure would not be likely to result in serious harm to that individual, this Part does not require notifying that individual of the statement contents relating to the access or disclosure.",
+      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WF",
-        "section": "(2)",
-        "url": ""
+        "section": "26WF(2)",
+        "url": "https://www.legislation.gov.au/C2004A03712",
+        "provision_uri": "/akn/au/act/1988-119/section/26WF"
       }
     },
     {
       "rule_id": "26WF-3",
-      "label": "Remedial action for loss before any unauthorised access/disclosure prevents eligible data breach",
+      "label": "Remedial action for loss before unauthorised access/disclosure prevents eligible data breach",
       "condition": {
         "==": [
           {
@@ -315,37 +266,39 @@
           "loss"
         ]
       },
-      "obligation": "If the entity takes remedial action in relation to the loss before there is any unauthorised access to or disclosure of the information, and as a result there is no unauthorised access or disclosure, the loss is taken never to have been an eligible data breach of the entity or any other entity.",
-      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients experiencing loss of information",
-      "exceptions": [],
-      "codifiability": "medium",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WF",
-        "section": "(3)",
-        "url": ""
-      }
-    },
-    {
-      "rule_id": "26WF-4",
-      "label": "Remedial action for loss after access/disclosure prevents eligible data breach",
-      "condition": {
-        "==": [
-          {
-            "var": "incident_type"
-          },
-          "loss"
-        ]
-      },
-      "obligation": "If the entity takes remedial action after there is unauthorised access or disclosure but before it results in serious harm, and as a result a reasonable person would conclude serious harm is no longer likely, the loss is taken never to have been an eligible data breach of the entity or any other entity.",
-      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients experiencing loss of information",
+      "obligation": "Where a loss of information is covered and the entity takes action before there is any unauthorised access to or disclosure of the information, and as a result there is no unauthorised access or disclosure, the loss is taken never to have been an eligible data breach.",
+      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WF",
-        "section": "(4)",
-        "url": ""
+        "section": "26WF(3)",
+        "url": "https://www.legislation.gov.au/C2004A03712",
+        "provision_uri": "/akn/au/act/1988-119/section/26WF"
+      }
+    },
+    {
+      "rule_id": "26WF-4",
+      "label": "Remedial action for loss after unauthorised access/disclosure prevents eligible data breach",
+      "condition": {
+        "==": [
+          {
+            "var": "incident_type"
+          },
+          "loss"
+        ]
+      },
+      "obligation": "Where a loss of information is covered and the entity takes action after unauthorised access or disclosure occurs but before it results in serious harm, and as a result a reasonable person would conclude the access or disclosure would not be likely to result in serious harm to any affected individual, the loss is taken never to have been an eligible data breach.",
+      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
+      "exceptions": [],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "Privacy Act 1988",
+        "article": "26WF",
+        "section": "26WF(4)",
+        "url": "https://www.legislation.gov.au/C2004A03712",
+        "provision_uri": "/akn/au/act/1988-119/section/26WF"
       }
     },
     {
@@ -359,837 +312,664 @@
           "loss"
         ]
       },
-      "obligation": "If the entity takes remedial action after there is unauthorised access or disclosure but before it results in serious harm to a particular individual, and as a result a reasonable person would conclude serious harm to that individual is no longer likely, this Part does not require the entity or any other entity to notify that individual of the statement contents.",
-      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients experiencing loss of information",
+      "obligation": "Where a loss is covered and the entity takes action after unauthorised access or disclosure but before serious harm results to a particular individual, and as a result a reasonable person would conclude the access or disclosure would not be likely to result in serious harm to that individual, this Part does not require notifying that individual of the statement contents relating to the loss.",
+      "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WF",
-        "section": "(5)",
-        "url": ""
+        "section": "26WF(5)",
+        "url": "https://www.legislation.gov.au/C2004A03712",
+        "provision_uri": "/akn/au/act/1988-119/section/26WF"
       }
     },
     {
-      "rule_id": "26WG-c-d-sensitive",
-      "label": "Sensitivity of information as serious harm factor",
-      "condition": {
-        "or": [
-          {
-            "in": [
-              {
-                "var": "data_categories"
-              },
-              [
-                "health"
-              ]
-            ]
-          },
-          {
-            "in": [
-              {
-                "var": "data_categories"
-              },
-              [
-                "financial"
-              ]
-            ]
-          },
-          {
-            "in": [
-              {
-                "var": "data_categories"
-              },
-              [
-                "identity"
-              ]
-            ]
-          },
-          {
-            "in": [
-              {
-                "var": "data_categories"
-              },
-              [
-                "biometric"
-              ]
-            ]
-          },
-          {
-            "in": [
-              {
-                "var": "data_categories"
-              },
-              [
-                "sensitive"
-              ]
-            ]
-          }
-        ]
-      },
-      "obligation": "Have regard to the kind and sensitivity of the information when assessing whether serious harm is likely",
-      "scope": "Assessment of likely serious harm from access or disclosure",
-      "exceptions": [],
-      "codifiability": "medium",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WG",
-        "section": "(c)-(d)",
-        "url": "https://www.legislation.gov.au/Details/C2017A00012"
-      }
-    },
-    {
-      "rule_id": "26WG-e-f-security",
-      "label": "Security measures and likelihood of being overcome",
-      "condition": {
-        "in": [
-          {
-            "var": "encryption_status"
-          },
-          [
-            "encrypted",
-            "partial",
-            "unencrypted"
-          ]
-        ]
-      },
-      "obligation": "Have regard to whether the information is protected by security measures and the likelihood those measures could be overcome",
-      "scope": "Assessment of likely serious harm from access or disclosure",
-      "exceptions": [],
-      "codifiability": "medium",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WG",
-        "section": "(e)-(f)",
-        "url": "https://www.legislation.gov.au/Details/C2017A00012"
-      }
-    },
-    {
-      "rule_id": "26WG-g-recipients",
-      "label": "Persons who have or could obtain the information",
-      "condition": {
-        "in": [
-          {
-            "var": "likely_recipient"
-          },
-          [
-            "unknown",
-            "specific_individual",
-            "criminal",
-            "broad_public"
-          ]
-        ]
-      },
-      "obligation": "Have regard to the persons or kinds of persons who have obtained or could obtain the information",
-      "scope": "Assessment of likely serious harm from access or disclosure",
-      "exceptions": [],
-      "codifiability": "medium",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WG",
-        "section": "(g)",
-        "url": "https://www.legislation.gov.au/Details/C2017A00012"
-      }
-    },
-    {
-      "rule_id": "26WG-h-circumvention",
-      "label": "Likelihood of circumventing security technology by malicious actors",
-      "condition": {
-        "and": [
-          {
-            "in": [
-              {
-                "var": "encryption_status"
-              },
-              [
-                "encrypted",
-                "partial"
-              ]
-            ]
-          },
-          {
-            "==": [
-              {
-                "var": "likely_recipient"
-              },
-              "criminal"
-            ]
-          }
-        ]
-      },
-      "obligation": "Have regard to the likelihood that persons with intent to cause harm could obtain knowledge required to circumvent the security technology (e.g. an encryption key)",
-      "scope": "Assessment where security technology designed to make information unintelligible was used",
-      "exceptions": [],
-      "codifiability": "medium",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WG",
-        "section": "(h)",
-        "url": "https://www.legislation.gov.au/Details/C2017A00012"
-      }
-    },
-    {
-      "rule_id": "26WG-i-nature-of-harm",
-      "label": "Nature of the harm",
+      "rule_id": "26WG_relevant_matters",
+      "label": "Relevant matters for assessing likelihood of serious harm",
       "condition": null,
-      "obligation": "Have regard to the nature of the harm when assessing whether serious harm is likely",
-      "scope": "Assessment of likely serious harm from access or disclosure",
+      "obligation": "In determining whether a reasonable person would conclude that access to or disclosure of information would, or would not, be likely to result in serious harm to affected individuals, have regard to: the kind(s) of information; its sensitivity; whether it is protected by security measures; the likelihood those measures could be overcome; the persons or kinds of persons who have obtained or could obtain the information; where security technology was designed to make information unintelligible, the likelihood that persons with intent to harm could obtain knowledge required to circumvent it; the nature of the harm; and any other relevant matters.",
+      "scope": "Assessment of serious harm under Part IIIC (NDB scheme), Division 2",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WG",
-        "section": "(i)",
-        "url": "https://www.legislation.gov.au/Details/C2017A00012"
+        "section": "26WG",
+        "url": "https://www.legislation.gov.au/Details/C2018C00292",
+        "provision_uri": "/akn/au/act/1988-119/section/26WG"
       }
     },
     {
-      "rule_id": "26WG-j-other-matters",
-      "label": "Any other relevant matters",
-      "condition": null,
-      "obligation": "Have regard to any other relevant matters when assessing whether serious harm is likely",
-      "scope": "Assessment of likely serious harm from access or disclosure",
-      "exceptions": [],
-      "codifiability": "low",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WG",
-        "section": "(j)",
-        "url": "https://www.legislation.gov.au/Details/C2017A00012"
-      }
-    },
-    {
-      "rule_id": "26WH_2a",
-      "label": "Reasonable and expeditious assessment of suspected breach",
+      "rule_id": "26WH-2-a",
+      "label": "Reasonable and expeditious assessment of suspected eligible data breach",
       "condition": null,
       "obligation": "The entity must carry out a reasonable and expeditious assessment of whether there are reasonable grounds to believe that the relevant circumstances amount to an eligible data breach of the entity.",
-      "scope": "Applies where an entity has reasonable grounds to suspect (but is not aware of reasonable grounds to believe) there may have been an eligible data breach.",
+      "scope": "Applies where an entity is aware of reasonable grounds to suspect an eligible data breach but is not yet aware of reasonable grounds to believe one has occurred.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WH",
         "section": "26WH(2)(a)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2017A00012",
+        "provision_uri": "/akn/au/act/1988-119/section/26WH"
       }
     },
     {
-      "rule_id": "26WH_2b",
+      "rule_id": "26WH-2-b",
       "label": "Complete assessment within 30 days",
       "condition": null,
-      "obligation": "The entity must take all reasonable steps to ensure that the assessment is completed within 30 days after the entity becomes aware of the reasonable grounds to suspect an eligible data breach.",
-      "scope": "Applies where an entity has reasonable grounds to suspect (but is not aware of reasonable grounds to believe) there may have been an eligible data breach.",
+      "obligation": "The entity must take all reasonable steps to ensure the assessment is completed within 30 days after becoming aware of the reasonable grounds to suspect an eligible data breach.",
+      "scope": "Applies where an entity is aware of reasonable grounds to suspect an eligible data breach but is not yet aware of reasonable grounds to believe one has occurred.",
       "exceptions": [],
-      "codifiability": "low",
+      "codifiability": "medium",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WH",
         "section": "26WH(2)(b)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2017A00012",
+        "provision_uri": "/akn/au/act/1988-119/section/26WH"
       }
     },
     {
       "rule_id": "26WJ-1",
-      "label": "Exception for shared data breach already notified by another entity",
+      "label": "Exception for eligible data breaches of other entities",
       "condition": null,
-      "obligation": "Section 26WH (notification obligation) does not apply to an other entity in relation to an eligible data breach where another entity has already complied with section 26WH in relation to the same access, disclosure or loss that constituted an eligible data breach of both entities.",
-      "scope": "Entities that share an eligible data breach where one entity has already complied with notification obligations under section 26WH.",
+      "obligation": "Where an entity complies with section 26WH in relation to an eligible data breach, and that same access, disclosure or loss is also an eligible data breach of one or more other entities, section 26WH does not apply in relation to those other entities' eligible data breaches.",
+      "scope": "Entities sharing the same eligible data breach where one entity has already complied with section 26WH",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
-        "source_doc": "Privacy Act 1988 (Cth)",
+        "source_doc": "Privacy Act 1988",
         "article": "26WJ",
         "section": "Exception\u2014eligible data breaches of other entities",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00321",
+        "provision_uri": "/akn/au/act/1988-119/section/26WJ"
       }
     },
     {
-      "rule_id": "26WK-1",
-      "label": "Obligation to prepare and give statement to Commissioner",
+      "rule_id": "26WK-2",
+      "label": "Prepare and give statement to Commissioner",
       "condition": null,
-      "obligation": "The entity must prepare a statement complying with subsection (3) and give a copy to the Commissioner as soon as practicable after becoming aware of reasonable grounds to believe an eligible data breach has occurred.",
-      "scope": "Applies when an entity is aware that there are reasonable grounds to believe there has been an eligible data breach of the entity.",
+      "obligation": "The entity must prepare a statement that complies with subsection (3) and give a copy to the Commissioner as soon as practicable after becoming aware that there are reasonable grounds to believe there has been an eligible data breach.",
+      "scope": "Applies where an entity is aware of reasonable grounds to believe there has been an eligible data breach of the entity.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WK",
         "section": "26WK(2)",
-        "url": ""
+        "url": "/akn/au/act/1988-119/section/26WK",
+        "provision_uri": "/akn/au/act/1988-119/section/26WK"
       }
     },
     {
-      "rule_id": "26WK-2",
+      "rule_id": "26WK-3",
       "label": "Required content of statement",
       "condition": null,
       "obligation": "The statement must set out the identity and contact details of the entity, a description of the eligible data breach, the particular kind or kinds of information concerned, and recommendations about steps individuals should take in response.",
-      "scope": "Applies to the statement prepared under subparagraph 26WK(2)(a)(i).",
+      "scope": "Applies to the statement prepared under subparagraph (2)(a)(i).",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WK",
         "section": "26WK(3)",
-        "url": ""
+        "url": "/akn/au/act/1988-119/section/26WK",
+        "provision_uri": "/akn/au/act/1988-119/section/26WK"
       }
     },
     {
-      "rule_id": "26WK-3",
+      "rule_id": "26WK-4",
       "label": "Optional inclusion of other affected entities",
       "condition": null,
       "obligation": "If the entity has reasonable grounds to believe the breach is also an eligible data breach of one or more other entities, the statement may also set out the identity and contact details of those other entities.",
-      "scope": "Applies where the breach constitutes an eligible data breach of multiple entities.",
+      "scope": "Applies where the breach also constitutes an eligible data breach of other entities.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WK",
         "section": "26WK(4)",
-        "url": ""
+        "url": "/akn/au/act/1988-119/section/26WK",
+        "provision_uri": "/akn/au/act/1988-119/section/26WK"
       }
     },
     {
       "rule_id": "26WL-1",
-      "label": "Notification obligation triggered by reasonable grounds and prepared statement",
+      "label": "Notify individuals to whom information relates",
       "condition": null,
-      "obligation": "If an entity is aware of reasonable grounds to believe an eligible data breach has occurred and has prepared a compliant statement, the entity must notify the breach.",
-      "scope": "Entities subject to the NDB scheme aware of an eligible data breach",
-      "exceptions": [],
+      "obligation": "If practicable to notify each individual to whom the relevant information relates, take reasonable steps to notify the contents of the statement to each of those individuals.",
+      "scope": "Applies where an entity has reasonable grounds to believe an eligible data breach has occurred and has prepared a compliant statement under 26WK(3).",
+      "exceptions": [
+        "Only applies if it is practicable to notify each individual to whom the relevant information relates"
+      ],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WL",
-        "section": "(1)",
-        "url": ""
+        "section": "26WL(2)(a)",
+        "url": "",
+        "provision_uri": "/akn/au/act/1988-119/section/26WL"
       }
     },
     {
       "rule_id": "26WL-2",
-      "label": "Notify individuals to whom information relates if practicable",
+      "label": "Notify individuals at risk",
       "condition": null,
-      "obligation": "If practicable, the entity must take reasonable steps to notify the contents of the statement to each individual to whom the relevant information relates.",
-      "scope": "Entities required to notify an eligible data breach",
+      "obligation": "If it is not practicable to notify each individual to whom the information relates but practicable to notify each individual at risk from the breach, take reasonable steps to notify the contents of the statement to each of those at-risk individuals.",
+      "scope": "Applies where an entity has reasonable grounds to believe an eligible data breach has occurred and has prepared a compliant statement, and paragraph (2)(a) does not apply.",
       "exceptions": [
-        "Not practicable to notify each individual"
+        "Only applies if it is practicable to notify each individual at risk from the breach"
       ],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WL",
-        "section": "(2)(a)",
-        "url": ""
+        "section": "26WL(2)(b)",
+        "url": "",
+        "provision_uri": "/akn/au/act/1988-119/section/26WL"
       }
     },
     {
       "rule_id": "26WL-3",
-      "label": "Notify individuals at risk if practicable",
+      "label": "Publish statement where individual notification impracticable",
       "condition": null,
-      "obligation": "If it is not practicable to notify all individuals to whom information relates but practicable to notify individuals at risk, the entity must take reasonable steps to notify the contents of the statement to each individual at risk from the breach.",
-      "scope": "Entities required to notify an eligible data breach",
-      "exceptions": [
-        "Not practicable to notify individuals at risk"
-      ],
+      "obligation": "If neither paragraph (2)(a) nor (2)(b) applies, publish a copy of the statement on the entity's website (if any) and take reasonable steps to publicise the contents of the statement.",
+      "scope": "Applies where an entity has reasonable grounds to believe an eligible data breach has occurred and individual notification under (2)(a) and (2)(b) is not practicable.",
+      "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WL",
-        "section": "(2)(b)",
-        "url": ""
+        "section": "26WL(2)(c)",
+        "url": "",
+        "provision_uri": "/akn/au/act/1988-119/section/26WL"
       }
     },
     {
       "rule_id": "26WL-4",
-      "label": "Publish statement if direct notification not practicable",
+      "label": "Timing of notification",
       "condition": null,
-      "obligation": "If neither direct notification option is practicable, the entity must publish a copy of the statement on its website (if any) and take reasonable steps to publicise the contents of the statement.",
-      "scope": "Entities required to notify an eligible data breach",
+      "obligation": "The entity must comply with the notification requirement in subsection (2) as soon as practicable after completing the preparation of the statement.",
+      "scope": "Applies to all entities required to notify an eligible data breach under subsection 26WL(2).",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WL",
-        "section": "(2)(c)",
-        "url": ""
+        "section": "26WL(3)",
+        "url": "",
+        "provision_uri": "/akn/au/act/1988-119/section/26WL"
       }
     },
     {
       "rule_id": "26WL-5",
-      "label": "Timing of notification",
+      "label": "Permitted method of providing statement to individual",
       "condition": null,
-      "obligation": "The entity must comply with the notification obligation as soon as practicable after completing preparation of the statement.",
-      "scope": "Entities required to notify an eligible data breach",
+      "obligation": "Where the entity normally communicates with a particular individual using a particular method, the notification under paragraph (2)(a) or (b) may use that method.",
+      "scope": "Applies to notifications to individuals under paragraph 26WL(2)(a) or (b).",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WL",
-        "section": "(3)",
-        "url": ""
-      }
-    },
-    {
-      "rule_id": "26WL-6",
-      "label": "Method of providing statement to individual",
-      "condition": null,
-      "obligation": "If the entity normally communicates with a particular individual using a particular method, the notification may use that method.",
-      "scope": "Entities notifying individuals of an eligible data breach",
-      "exceptions": [],
-      "codifiability": "low",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WL",
-        "section": "(4)",
-        "url": ""
+        "section": "26WL(4)",
+        "url": "",
+        "provision_uri": "/akn/au/act/1988-119/section/26WL"
       }
     },
     {
       "rule_id": "26WM-1",
-      "label": "Exception from notification for other entities sharing the same breach",
+      "label": "Exception for eligible data breaches of other entities",
       "condition": null,
-      "obligation": "Sections 26WK and 26WL do not apply to other entities in relation to the same eligible data breach where one entity has already complied with sections 26WK and 26WL for that breach.",
-      "scope": "Multiple entities affected by the same access, disclosure or loss constituting an eligible data breach",
+      "obligation": "Sections 26WK and 26WL do not apply to other entities where one entity has already complied with those sections in relation to the same access, disclosure or loss that constitutes an eligible data breach of those other entities.",
+      "scope": "Entities sharing an eligible data breach where another entity has complied with notification obligations under sections 26WK and 26WL.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WM",
         "section": "26WM",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WM"
       }
     },
     {
       "rule_id": "26WN-enforcement-exception",
       "label": "Exception for enforcement related activities",
       "condition": null,
-      "obligation": "Paragraph 26WK(3)(d) and section 26WL (notification obligations) do not apply to the eligible data breach where the entity is an enforcement body and its CEO believes on reasonable grounds that there has been an eligible data breach and that compliance with section 26WL would be likely to prejudice one or more enforcement related activities.",
-      "scope": "Enforcement bodies whose CEO holds the requisite reasonable belief about prejudice to enforcement related activities.",
+      "obligation": "Paragraph 26WK(3)(d) and section 26WL (notification obligations) do not apply where an enforcement body's CEO believes on reasonable grounds that an eligible data breach has occurred and that compliance would likely prejudice one or more enforcement related activities.",
+      "scope": "Entities that are enforcement bodies where the CEO holds reasonable grounds for belief",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WN",
         "section": "26WN",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2018C00292",
+        "provision_uri": "/akn/au/act/1988-119/section/26WN"
       }
     },
     {
-      "rule_id": "26WN-extension-other-entities",
-      "label": "Exception extends to other entities affected by same breach",
+      "rule_id": "26WN-extends-to-other-entities",
+      "label": "Exception extends to other affected entities",
       "condition": null,
-      "obligation": "If the access, disclosure or loss constituting the eligible data breach is also an eligible data breach of one or more other entities, the exception (non-application of paragraph 26WK(3)(d) and section 26WL) also applies to those other entities' eligible data breaches.",
-      "scope": "Other entities affected by the same access, disclosure or loss event that gave rise to the enforcement body's eligible data breach.",
+      "obligation": "Where the access, disclosure or loss constituting the eligible data breach is also an eligible data breach of one or more other entities, the exception in section 26WN applies in relation to those other entities' eligible data breaches as well.",
+      "scope": "Other entities affected by the same access, disclosure or loss",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WN",
         "section": "26WN",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2018C00292",
+        "provision_uri": "/akn/au/act/1988-119/section/26WN"
       }
     },
     {
-      "rule_id": "26WP_def_secrecy_provision",
+      "rule_id": "26WP-1",
       "label": "Definition of secrecy provision",
       "condition": null,
-      "obligation": "A 'secrecy provision' is a provision of a Commonwealth law (other than the Privacy Act) that prohibits or regulates the use or disclosure of information.",
-      "scope": "Interpretation of secrecy provision for section 26WP",
+      "obligation": "A 'secrecy provision' means a provision of a law of the Commonwealth (other than the Privacy Act) that prohibits or regulates the use or disclosure of information.",
+      "scope": "Interpretation of secrecy provisions for this section",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WP",
         "section": "26WP(1)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WP"
       }
     },
     {
-      "rule_id": "26WP_exception_26WK_secrecy",
-      "label": "Exception to 26WK(2) statement detail for inconsistency with secrecy provision",
+      "rule_id": "26WP-2",
+      "label": "Exception to statement contents where inconsistent with non-prescribed secrecy provision",
       "condition": null,
-      "obligation": "Where compliance with subparagraph 26WK(2)(a)(ii) (recommended steps content in the statement) would be inconsistent with a non-prescribed secrecy provision, subsection 26WK(2) does not apply to the extent of the inconsistency.",
-      "scope": "Eligible data breach notification statements affected by Commonwealth secrecy laws",
-      "exceptions": [],
+      "obligation": "If compliance with subparagraph 26WK(2)(a)(ii) would be inconsistent with a secrecy provision (other than a prescribed secrecy provision), subsection 26WK(2) does not apply to the extent of the inconsistency.",
+      "scope": "Preparation of eligible data breach statements",
+      "exceptions": [
+        "Prescribed secrecy provisions are handled separately under subsections (6)-(7)"
+      ],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WP",
         "section": "26WP(2)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WP"
       }
     },
     {
-      "rule_id": "26WP_exception_26WL_secrecy",
-      "label": "Exception to 26WL notification for inconsistency with secrecy provision",
+      "rule_id": "26WP-3",
+      "label": "Exception to notification where inconsistent with non-prescribed secrecy provision",
       "condition": null,
-      "obligation": "Where compliance with section 26WL (notifying individuals) would be inconsistent with a non-prescribed secrecy provision, section 26WL does not apply to the extent of the inconsistency.",
-      "scope": "Notification to individuals affected by Commonwealth secrecy laws",
-      "exceptions": [],
+      "obligation": "If compliance with section 26WL would be inconsistent with a secrecy provision (other than a prescribed secrecy provision), section 26WL does not apply to the extent of the inconsistency.",
+      "scope": "Notification of individuals at risk from eligible data breach",
+      "exceptions": [
+        "Prescribed secrecy provisions are handled separately under subsections (6)-(7)"
+      ],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WP",
         "section": "26WP(3)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WP"
       }
     },
     {
-      "rule_id": "26WP_def_prescribed_secrecy_provision",
+      "rule_id": "26WP-4",
       "label": "Definition of prescribed secrecy provision",
       "condition": null,
-      "obligation": "A 'prescribed secrecy provision' is a secrecy provision specified in the regulations.",
-      "scope": "Interpretation of prescribed secrecy provision for section 26WP",
+      "obligation": "A 'prescribed secrecy provision' means a secrecy provision specified in the regulations.",
+      "scope": "Interpretation of prescribed secrecy provisions",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WP",
         "section": "26WP(4)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WP"
       }
     },
     {
-      "rule_id": "26WP_prescribed_not_authorising",
-      "label": "Prescribed secrecy provision treatment of 26WK and 26WL",
+      "rule_id": "26WP-5",
+      "label": "Prescribed secrecy provisions not treated as authorising use or disclosure",
       "condition": null,
-      "obligation": "For a prescribed secrecy provision, subparagraph 26WK(2)(a)(ii) and section 26WL are taken not to be provisions that require or authorise the use or disclosure of information.",
-      "scope": "Interaction of prescribed secrecy provisions with NDB obligations",
+      "obligation": "For the purposes of a prescribed secrecy provision, subparagraph 26WK(2)(a)(ii) and section 26WL are taken not to be provisions that require or authorise the use or disclosure of information.",
+      "scope": "Interaction of NDB provisions with prescribed secrecy provisions",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WP",
         "section": "26WP(5)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WP"
       }
     },
     {
-      "rule_id": "26WP_exception_26WK_prescribed",
-      "label": "Full exception to 26WK(2) for inconsistency with prescribed secrecy provision",
+      "rule_id": "26WP-6",
+      "label": "Exception to statement contents where inconsistent with prescribed secrecy provision",
       "condition": null,
-      "obligation": "Where compliance with subparagraph 26WK(2)(a)(ii) would be inconsistent to any extent with a prescribed secrecy provision, subsection 26WK(2) does not apply to the entity in relation to the statement.",
-      "scope": "Eligible data breach statements affected by prescribed secrecy provisions",
+      "obligation": "If compliance with subparagraph 26WK(2)(a)(ii) would be inconsistent with a prescribed secrecy provision, subsection 26WK(2) does not apply to the entity in relation to the statement (entirely, not merely to the extent of inconsistency).",
+      "scope": "Preparation of eligible data breach statements",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WP",
         "section": "26WP(6)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WP"
       }
     },
     {
-      "rule_id": "26WP_exception_26WL_prescribed",
-      "label": "Full exception to 26WL for inconsistency with prescribed secrecy provision",
+      "rule_id": "26WP-7",
+      "label": "Exception to notification where inconsistent with prescribed secrecy provision",
       "condition": null,
-      "obligation": "Where compliance with section 26WL would be inconsistent to any extent with a prescribed secrecy provision, section 26WL does not apply to the entity in relation to the statement.",
-      "scope": "Notification to individuals affected by prescribed secrecy provisions",
+      "obligation": "If compliance with section 26WL would be inconsistent with a prescribed secrecy provision, section 26WL does not apply to the entity in relation to the statement (entirely, not merely to the extent of inconsistency).",
+      "scope": "Notification of individuals at risk from eligible data breach",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WP",
         "section": "26WP(7)",
-        "url": ""
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WP"
       }
     },
     {
       "rule_id": "26WQ-1-declaration-power",
-      "label": "Commissioner may declare exception to sections 26WK and 26WL",
+      "label": "Commissioner may declare exception from notification obligations",
       "condition": null,
-      "obligation": "The Commissioner may, by written notice to the entity, declare that sections 26WK and 26WL do not apply to the eligible data breach (and related breaches of other entities), or that subsection 26WL(3) requires compliance with 26WL(2) within a specified period.",
-      "scope": "Where the Commissioner is aware of, or is informed by an entity of, reasonable grounds to believe an eligible data breach has occurred.",
+      "obligation": "The Commissioner may, by written notice to the entity, declare that sections 26WK and 26WL do not apply, or that subsection 26WL(3) has effect as if requiring compliance within a specified period, where the Commissioner has reasonable grounds to believe (or is so informed by the entity) that an eligible data breach has occurred.",
+      "scope": "Eligible data breaches where the Commissioner is aware of or informed of reasonable grounds to believe a breach occurred.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WQ",
-        "section": "(1)",
-        "url": ""
+        "section": "26WQ(1)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WQ"
       }
     },
     {
-      "rule_id": "26WQ-2-extension-reasonable-period",
-      "label": "Time extension limited to reasonable period",
+      "rule_id": "26WQ-2-extension-reasonable",
+      "label": "Extension of compliance period limited to reasonable period",
       "condition": null,
-      "obligation": "The Commissioner may only use the paragraph (1)(d) power to extend the time for compliance with subsection 26WL(2) to the end of a period the Commissioner is satisfied is reasonable in the circumstances.",
-      "scope": "Use of the power to extend compliance time under paragraph (1)(d).",
+      "obligation": "The power under paragraph (1)(d) may only be used to extend the time for compliance with subsection 26WL(2) to the end of a period that the Commissioner is satisfied is reasonable in the circumstances.",
+      "scope": "Declarations extending the compliance period under subsection 26WL(2).",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WQ",
-        "section": "(2)",
-        "url": ""
+        "section": "26WQ(2)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WQ"
       }
     },
     {
-      "rule_id": "26WQ-3-reasonableness-requirement",
-      "label": "Declaration only if reasonable in the circumstances",
+      "rule_id": "26WQ-3-declaration-reasonableness",
+      "label": "Declaration only if reasonable having regard to relevant matters",
       "condition": null,
-      "obligation": "The Commissioner must not make a declaration unless satisfied it is reasonable in the circumstances, having regard to the public interest, relevant advice from an enforcement body or the Australian Signals Directorate, and any other relevant matters.",
-      "scope": "Any declaration made under subsection (1).",
+      "obligation": "The Commissioner must not make a declaration under subsection (1) unless satisfied it is reasonable in the circumstances, having regard to the public interest, any relevant advice from an enforcement body or the Australian Signals Directorate, and such other matters as the Commissioner considers relevant.",
+      "scope": "All declarations made under subsection 26WQ(1).",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WQ",
-        "section": "(3)",
-        "url": ""
+        "section": "26WQ(3)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WQ"
       }
     },
     {
-      "rule_id": "26WQ-4-advice-not-limited",
-      "label": "Advice considered not limited to specified bodies",
-      "condition": null,
-      "obligation": "Paragraph (3)(b) does not limit the advice to which the Commissioner may have regard.",
-      "scope": "Interpretation of advice the Commissioner may consider.",
-      "exceptions": [],
-      "codifiability": "low",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WQ",
-        "section": "(4)",
-        "url": ""
-      }
-    },
-    {
-      "rule_id": "26WQ-5-initiation",
+      "rule_id": "26WQ-5-notice-initiative-or-application",
       "label": "Declaration on own initiative or on application",
       "condition": null,
-      "obligation": "The Commissioner may give notice of a declaration on the Commissioner's own initiative or on application made by the entity.",
-      "scope": "How a declaration process may be initiated.",
+      "obligation": "The Commissioner may give notice of a declaration on the Commissioner's own initiative or on application by the entity.",
+      "scope": "Procedure for initiating declarations.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WQ",
-        "section": "(5)",
-        "url": ""
-      }
-    },
-    {
-      "rule_id": "26WQ-6-application-types",
-      "label": "Forms of application for declaration",
-      "condition": null,
-      "obligation": "An entity's application may be expressed as an application for a paragraph (1)(c) declaration, a paragraph (1)(d) declaration, or a paragraph (1)(c) declaration with a fallback to a paragraph (1)(d) declaration if the Commissioner is not disposed to grant the former.",
-      "scope": "Applications made by an entity under paragraph (5)(b).",
-      "exceptions": [],
-      "codifiability": "low",
-      "docref": {
-        "source_doc": "Privacy Act 1988",
-        "article": "26WQ",
-        "section": "(6)",
-        "url": ""
+        "section": "26WQ(5)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WQ"
       }
     },
     {
       "rule_id": "26WQ-7-refusal-notice",
-      "label": "Commissioner may refuse application with written notice",
+      "label": "Commissioner may refuse application and must give written notice",
       "condition": null,
-      "obligation": "The Commissioner may refuse an application and, if so, must give written notice of the refusal to the entity.",
-      "scope": "Applications made by an entity under paragraph (5)(b).",
+      "obligation": "If an entity applies under paragraph (5)(b), the Commissioner may refuse the application and, if so, must give written notice of the refusal to the entity.",
+      "scope": "Applications by entities for declarations.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WQ",
-        "section": "(7)",
-        "url": ""
+        "section": "26WQ(7)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WQ"
       }
     },
     {
       "rule_id": "26WQ-8-different-period-not-refusal",
-      "label": "Specifying different period not a refusal",
+      "label": "Specifying different period is not a refusal",
       "condition": null,
-      "obligation": "Where an application nominates a period and the Commissioner makes the declaration but specifies a different period, the Commissioner is taken not to have refused the application.",
-      "scope": "Paragraph (1)(d) declaration applications nominating a period.",
+      "obligation": "If an application nominates a period but the Commissioner makes the declaration specifying a different period, the Commissioner is taken not to have refused the application.",
+      "scope": "Applications for paragraph (1)(d) declarations nominating a period.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WQ",
-        "section": "(8)",
-        "url": ""
+        "section": "26WQ(8)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WQ"
       }
     },
     {
       "rule_id": "26WQ-9-suspension-pending-decision",
-      "label": "Sections 26WK and 26WL suspended pending decision",
+      "label": "Notification obligations suspended pending decision on application",
       "condition": null,
-      "obligation": "If an entity applies for a declaration relating to an eligible data breach, sections 26WK and 26WL do not apply to the breach (and related breaches of other entities) until the Commissioner makes a decision on the application.",
-      "scope": "While an application under paragraph (5)(b) is pending decision.",
+      "obligation": "If an entity applies under paragraph (5)(b) for a declaration relating to an eligible data breach, sections 26WK and 26WL do not apply to that breach (and related breaches of other entities) until the Commissioner makes a decision on the application.",
+      "scope": "Period between application and the Commissioner's decision.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WQ",
-        "section": "(9)",
-        "url": ""
+        "section": "26WQ(9)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WQ"
       }
     },
     {
       "rule_id": "26WQ-10-no-duplicate-application",
-      "label": "No application where another entity has applied for same breach",
+      "label": "Entity not entitled to apply if another affected entity has already applied",
       "condition": null,
-      "obligation": "An entity is not entitled to make an application in relation to its eligible data breach if the same access, disclosure or loss is also an eligible data breach of another entity and that other entity has already made an application.",
-      "scope": "Multi-entity eligible data breaches arising from the same incident.",
+      "obligation": "An entity is not entitled to make an application under paragraph (5)(b) where the same access, disclosure or loss is an eligible data breach of one or more other entities and one of those other entities has already made an application under paragraph (5)(b).",
+      "scope": "Multi-entity eligible data breaches arising from the same access, disclosure or loss.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WQ",
-        "section": "(10)",
-        "url": ""
+        "section": "26WQ(10)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WQ"
       }
     },
     {
-      "rule_id": "26WQ-11-extension-of-specified-period",
+      "rule_id": "26WQ-11-extension-of-period",
       "label": "Commissioner may extend specified period",
       "condition": null,
-      "obligation": "If notice of a paragraph (1)(d) declaration has been given, the Commissioner may by written notice extend the period specified in the declaration.",
-      "scope": "Existing paragraph (1)(d) declarations.",
+      "obligation": "If notice of a paragraph (1)(d) declaration has been given, the Commissioner may, by written notice to the entity, extend the period specified in the declaration.",
+      "scope": "Existing paragraph (1)(d) declarations specifying a compliance period.",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WQ",
-        "section": "(11)",
-        "url": ""
+        "section": "26WQ(11)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WQ"
       }
     },
     {
-      "rule_id": "26WR-1",
+      "rule_id": "26WR-1-direction-power",
       "label": "Commissioner may direct entity to prepare and provide statement",
       "condition": null,
-      "obligation": "If the Commissioner has reasonable grounds to believe there has been an eligible data breach, the Commissioner may direct the entity by written notice to prepare a compliant statement and give a copy to the Commissioner.",
-      "scope": "Entities subject to NDB scheme where Commissioner believes an eligible data breach has occurred",
+      "obligation": "If the Commissioner is aware of reasonable grounds to believe there has been an eligible data breach, the Commissioner may by written notice direct the entity to prepare a compliant statement and give a copy to the Commissioner.",
+      "scope": "Entities subject to NDB scheme where Commissioner has reasonable grounds to believe an eligible data breach occurred",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WR",
-        "section": "(1)",
-        "url": ""
+        "section": "26WR(1)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WR"
       }
     },
     {
-      "rule_id": "26WR-2",
-      "label": "Direction must require notification to affected individuals",
+      "rule_id": "26WR-2-notification-method-required",
+      "label": "Direction must require notification or publication of statement",
       "condition": null,
-      "obligation": "The direction must require the entity to: if practicable, take reasonable steps to notify the statement contents to each individual to whom the information relates; or if practicable, to each individual at risk; or otherwise publish on website and take reasonable steps to publicise.",
-      "scope": "Entities given a direction under subsection (1)",
+      "obligation": "The direction must require the entity to notify the statement contents to affected individuals (if practicable), or to at-risk individuals (if practicable), or otherwise to publish the statement on its website and take reasonable steps to publicise it.",
+      "scope": "Entities receiving a direction under subsection (1)",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WR",
-        "section": "(2)",
-        "url": ""
+        "section": "26WR(2)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WR"
       }
     },
     {
-      "rule_id": "26WR-3",
-      "label": "Commissioner must invite submission before direction",
+      "rule_id": "26WR-3-invite-submission",
+      "label": "Commissioner must invite submission before giving direction",
       "condition": null,
-      "obligation": "Before giving a direction under subsection (1), the Commissioner must invite the entity to make a submission within a specified period.",
-      "scope": "Commissioner prior to issuing a direction",
+      "obligation": "Before giving a direction under subsection (1), the Commissioner must invite the entity to make a submission within the specified period.",
+      "scope": "Commissioner intending to give a direction under 26WR(1)",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WR",
-        "section": "(3)",
-        "url": ""
+        "section": "26WR(3)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WR"
       }
     },
     {
-      "rule_id": "26WR-4",
+      "rule_id": "26WR-4-statement-contents",
       "label": "Required contents of statement",
       "condition": null,
-      "obligation": "The statement must set out: the entity's identity and contact details; a description of the eligible data breach; the particular kind(s) of information concerned; and recommendations about steps individuals should take in response.",
-      "scope": "Statement prepared under paragraph (1)(a)",
+      "obligation": "The statement must set out the entity's identity and contact details, a description of the eligible data breach, the kind(s) of information concerned, and recommendations about steps individuals should take.",
+      "scope": "Statement prepared under direction in 26WR(1)(a)",
       "exceptions": [],
-      "codifiability": "low",
+      "codifiability": "medium",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WR",
-        "section": "(4)",
-        "url": ""
+        "section": "26WR(4)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WR"
       }
     },
     {
-      "rule_id": "26WR-5",
-      "label": "Direction may require additional specified information",
+      "rule_id": "26WR-5-additional-specified-info",
+      "label": "Direction may require additional specified information in statement",
       "condition": null,
-      "obligation": "A direction may also require the statement to set out specified information relating to the eligible data breach.",
-      "scope": "Statement prepared under paragraph (1)(a)",
+      "obligation": "A direction may require the statement to set out specified information relating to the eligible data breach.",
+      "scope": "Statement prepared under direction in 26WR(1)(a)",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WR",
-        "section": "(5)",
-        "url": ""
+        "section": "26WR(5)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WR"
       }
     },
     {
-      "rule_id": "26WR-6",
-      "label": "Matters Commissioner must consider before directing",
+      "rule_id": "26WR-6-relevant-considerations",
+      "label": "Commissioner must have regard to relevant matters",
       "condition": null,
-      "obligation": "In deciding whether to give a direction, the Commissioner must have regard to relevant advice from an enforcement body or the Australian Signals Directorate, any relevant submission made by the entity within the specified period, and any other relevant matters.",
-      "scope": "Commissioner's decision to issue a direction",
+      "obligation": "In deciding whether to give a direction, the Commissioner must have regard to relevant advice from enforcement bodies or the Australian Signals Directorate, any relevant submission from the entity, and any other relevant matters.",
+      "scope": "Commissioner deciding whether to give a direction under 26WR(1)",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WR",
-        "section": "(6)",
-        "url": ""
+        "section": "26WR(6)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WR"
       }
     },
     {
-      "rule_id": "26WR-7",
-      "label": "Direction may require identity of other affected entities",
+      "rule_id": "26WR-8-multiple-entities",
+      "label": "Direction may require identification of other affected entities",
       "condition": null,
-      "obligation": "If the Commissioner has reasonable grounds to believe the breach is also an eligible data breach of one or more other entities, the direction may require the statement to set out the identity and contact details of those other entities.",
-      "scope": "Multi-entity eligible data breaches",
+      "obligation": "If the Commissioner has reasonable grounds to believe the breach is also an eligible data breach of other entities, the direction may require the statement to set out the identity and contact details of those other entities.",
+      "scope": "Directions where the breach affects multiple entities",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WR",
-        "section": "(8)",
-        "url": ""
+        "section": "26WR(8)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WR"
       }
     },
     {
-      "rule_id": "26WR-8",
-      "label": "Method of notifying an individual",
+      "rule_id": "26WR-9-notification-method",
+      "label": "Notification may use normal communication method",
       "condition": null,
-      "obligation": "If the entity normally communicates with a particular individual using a particular method, the notification under paragraph (2)(a) or (b) may use that method.",
-      "scope": "Notification to individuals under a direction",
+      "obligation": "If an entity normally communicates with an individual using a particular method, notification under 26WR(2)(a) or (b) may use that method.",
+      "scope": "Entities notifying individuals under a direction",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WR",
-        "section": "(9)",
-        "url": ""
+        "section": "26WR(9)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WR"
       }
     },
     {
-      "rule_id": "26WR-9",
+      "rule_id": "26WR-10-comply-asap",
       "label": "Entity must comply with direction as soon as practicable",
       "condition": null,
       "obligation": "An entity must comply with a direction under subsection (1) as soon as practicable after the direction is given.",
-      "scope": "Entities given a direction under subsection (1)",
+      "scope": "Entities given a direction under 26WR(1)",
       "exceptions": [],
       "codifiability": "low",
       "docref": {
         "source_doc": "Privacy Act 1988",
         "article": "26WR",
-        "section": "(10)",
-        "url": ""
+        "section": "26WR(10)",
+        "url": "https://www.legislation.gov.au/Details/C2022C00361",
+        "provision_uri": "/akn/au/act/1988-119/section/26WR"
       }
     }
   ],
