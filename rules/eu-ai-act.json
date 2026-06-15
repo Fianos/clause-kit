@@ -1,0 +1,740 @@
+{
+  "domain": "eu-ai-act",
+  "version": "Regulation (EU) 2024/1689",
+  "extracted_at": "2026-06-15",
+  "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689",
+  "rules": [
+    {
+      "rule_id": "art5_1_a_subliminal_manipulation",
+      "label": "Prohibition of subliminal or manipulative/deceptive AI techniques",
+      "condition": null,
+      "obligation": "An AI system that deploys subliminal, purposefully manipulative, or deceptive techniques that materially distort behaviour and are reasonably likely to cause significant harm shall not be placed on the market, put into service, or used.",
+      "scope": "All operators placing on market, putting into service, or using AI systems",
+      "exceptions": [],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "1(a)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art5_1_b_exploitation_vulnerabilities",
+      "label": "Prohibition of exploitation of vulnerabilities",
+      "condition": null,
+      "obligation": "An AI system that exploits vulnerabilities due to age, disability, or a specific social or economic situation to materially distort behaviour in a manner likely to cause significant harm shall not be placed on the market, put into service, or used.",
+      "scope": "All operators placing on market, putting into service, or using AI systems",
+      "exceptions": [],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "1(b)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art5_1_c_social_scoring",
+      "label": "Prohibition of social scoring",
+      "condition": null,
+      "obligation": "AI systems for evaluation or classification of persons based on social behaviour or personal characteristics leading to unjustified/disproportionate or out-of-context detrimental treatment shall not be placed on market, put into service, or used.",
+      "scope": "All operators of AI systems performing social scoring",
+      "exceptions": [],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "1(c)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art5_1_d_predictive_policing_profiling",
+      "label": "Prohibition of individual criminal risk assessment based solely on profiling",
+      "condition": null,
+      "obligation": "AI systems for assessing or predicting the risk of a person committing a criminal offence based solely on profiling or personality traits shall not be placed on market, put into service, or used.",
+      "scope": "Operators of criminal risk-assessment AI systems",
+      "exceptions": [
+        "Does not apply to AI systems supporting human assessment based on objective and verifiable facts directly linked to a criminal activity"
+      ],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "1(d)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art5_1_e_facial_scraping",
+      "label": "Prohibition of untargeted facial image scraping",
+      "condition": null,
+      "obligation": "AI systems that create or expand facial recognition databases through untargeted scraping of facial images from the internet or CCTV footage shall not be placed on market, put into service, or used.",
+      "scope": "Operators of facial recognition database AI systems",
+      "exceptions": [],
+      "codifiability": "medium",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "1(e)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art5_1_f_emotion_recognition_work_education",
+      "label": "Prohibition of emotion inference in workplace and education",
+      "condition": {
+        "in": [
+          {
+            "var": "deployment_sector"
+          },
+          [
+            "employment",
+            "education"
+          ]
+        ]
+      },
+      "obligation": "AI systems to infer emotions of natural persons in workplace and education institutions shall not be placed on market, put into service, or used.",
+      "scope": "Emotion-recognition AI systems in workplace and education institutions",
+      "exceptions": [
+        "Where intended for medical or safety reasons"
+      ],
+      "codifiability": "medium",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "1(f)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art5_1_g_biometric_categorisation_sensitive",
+      "label": "Prohibition of biometric categorisation inferring sensitive attributes",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "biometric_id"
+        ]
+      },
+      "obligation": "Biometric categorisation systems that deduce or infer race, political opinions, trade union membership, religious/philosophical beliefs, sex life, or sexual orientation shall not be placed on market, put into service, or used.",
+      "scope": "Biometric categorisation AI systems",
+      "exceptions": [
+        "Labelling or filtering of lawfully acquired biometric datasets",
+        "Categorisation of biometric data in the area of law enforcement"
+      ],
+      "codifiability": "medium",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "1(g)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art5_1_h_realtime_biometric_le",
+      "label": "Prohibition of real-time remote biometric ID in public spaces for law enforcement",
+      "condition": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "real_time_biometric"
+              },
+              true
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "publicly_accessible_spaces"
+              },
+              true
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "deployment_sector"
+              },
+              "law_enforcement"
+            ]
+          }
+        ]
+      },
+      "obligation": "Use of real-time remote biometric identification systems in publicly accessible spaces for law enforcement is prohibited unless strictly necessary for an exhaustively listed objective (targeted search for victims, prevention of substantial imminent threat/terrorist attack, or localisation of a suspect for serious offences in Annex II).",
+      "scope": "Law enforcement use of real-time remote biometric identification in public spaces",
+      "exceptions": [
+        "Targeted search for specific victims of abduction, trafficking, sexual exploitation, or missing persons",
+        "Prevention of a specific, substantial and imminent threat to life/physical safety or a genuine present/foreseeable terrorist attack",
+        "Localisation/identification of a suspect for offences in Annex II punishable by at least four years custodial sentence"
+      ],
+      "codifiability": "medium",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "1(h)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art5_2_realtime_biometric_safeguards",
+      "label": "Conditions for permitted real-time biometric ID use (FRIA and registration)",
+      "condition": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "real_time_biometric"
+              },
+              true
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "publicly_accessible_spaces"
+              },
+              true
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "deployment_sector"
+              },
+              "law_enforcement"
+            ]
+          }
+        ]
+      },
+      "obligation": "Permitted use must confirm identity of a specifically targeted individual, account for the nature/consequences of the situation, comply with necessary and proportionate safeguards under national law, and only be authorised after completing a fundamental rights impact assessment (Article 27) and registering the system in the EU database (Article 49); in urgent cases registration may be completed without undue delay.",
+      "scope": "Law enforcement deployers of permitted real-time remote biometric identification",
+      "exceptions": [
+        "In duly justified urgency, use may commence before EU database registration if completed without undue delay"
+      ],
+      "codifiability": "medium",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "2",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art5_3_realtime_biometric_prior_authorisation",
+      "label": "Prior judicial/administrative authorisation for real-time biometric ID use",
+      "condition": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "real_time_biometric"
+              },
+              true
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "publicly_accessible_spaces"
+              },
+              true
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "deployment_sector"
+              },
+              "law_enforcement"
+            ]
+          }
+        ]
+      },
+      "obligation": "Each law enforcement use requires prior authorisation by a judicial or independent administrative authority upon reasoned request; in urgency, use may begin without authorisation provided it is requested within 24 hours, and if rejected use must stop immediately and all data/results discarded.",
+      "scope": "Law enforcement deployers of permitted real-time remote biometric identification",
+      "exceptions": [
+        "Duly justified urgency: authorisation may be requested within 24 hours after commencement"
+      ],
+      "codifiability": "high",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 5",
+        "section": "3",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "art6_1_safety_component_highrisk",
+      "label": "High-risk classification via Annex I safety component requiring third-party conformity assessment",
+      "condition": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "involves_safety_component"
+              },
+              true
+            ]
+          }
+        ]
+      },
+      "obligation": "An AI system intended to be used as a safety component of a product (or which is itself a product) covered by Union harmonisation legislation in Annex I, and required to undergo third-party conformity assessment, shall be considered high-risk.",
+      "scope": "AI systems that are safety components or products under Annex I harmonisation legislation",
+      "exceptions": [],
+      "codifiability": "medium",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 6",
+        "section": "1",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+      }
+    },
+    {
+      "rule_id": "art6_2_annex_iii_highrisk",
+      "label": "High-risk classification for Annex III systems",
+      "condition": {
+        "in": [
+          {
+            "var": "deployment_sector"
+          },
+          [
+            "employment",
+            "education",
+            "credit",
+            "law_enforcement",
+            "border",
+            "critical_infra",
+            "biometric_id"
+          ]
+        ]
+      },
+      "obligation": "AI systems referred to in Annex III shall be considered high-risk.",
+      "scope": "AI systems in Annex III use-case areas",
+      "exceptions": [
+        "Art 6(3) derogation where no significant risk of harm"
+      ],
+      "codifiability": "medium",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 6",
+        "section": "2",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+      }
+    },
+    {
+      "rule_id": "art6_3_derogation_not_highrisk",
+      "label": "Derogation: Annex III system not high-risk if it meets an exception and does not perform profiling",
+      "condition": {
+        "and": [
+          {
+            "in": [
+              {
+                "var": "deployment_sector"
+              },
+              [
+                "employment",
+                "education",
+                "credit",
+                "law_enforcement",
+                "border",
+                "critical_infra",
+                "biometric_id"
+              ]
+            ]
+          },
+          {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "art6_3_exception_narrow_procedure"
+                  },
+                  true
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "art6_3_exception_human_override"
+                  },
+                  true
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "art6_3_exception_contravention_check"
+                  },
+                  true
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "art6_3_exception_preparatory_task"
+                  },
+                  true
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "obligation": "An Annex III AI system shall not be considered high-risk where it does not pose a significant risk of harm and fulfils one of the listed conditions (narrow procedural task, improving a completed human activity, detecting deviations without replacing human assessment, or preparatory task), unless it performs profiling of natural persons.",
+      "scope": "Annex III AI systems meeting a derogation condition",
+      "exceptions": [
+        "Always high-risk where the system performs profiling of natural persons"
+      ],
+      "codifiability": "medium",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 6",
+        "section": "3",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+      }
+    },
+    {
+      "rule_id": "art6_3_profiling_always_highrisk",
+      "label": "Profiling always renders Annex III system high-risk",
+      "condition": null,
+      "obligation": "Notwithstanding the derogation conditions, an Annex III AI system shall always be considered high-risk where it performs profiling of natural persons.",
+      "scope": "Annex III AI systems performing profiling of natural persons",
+      "exceptions": [],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 6",
+        "section": "3",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+      }
+    },
+    {
+      "rule_id": "art6_4_document_non_highrisk_assessment",
+      "label": "Provider must document non-high-risk assessment and register",
+      "condition": null,
+      "obligation": "A provider who considers that an Annex III AI system is not high-risk shall document its assessment before placing on the market or putting into service, comply with the registration obligation in Article 49(2), and provide the documentation to national competent authorities upon request.",
+      "scope": "Providers claiming Annex III system is not high-risk under Art 6(3)",
+      "exceptions": [],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Article 6",
+        "section": "4",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+      }
+    },
+    {
+      "rule_id": "annex_i_harmonisation_safety_component",
+      "label": "AI system as safety component under Annex I harmonisation legislation",
+      "condition": {
+        "==": [
+          {
+            "var": "involves_safety_component"
+          },
+          true
+        ]
+      },
+      "obligation": "An AI system intended to be used as a safety component of a product, or which is itself a product, covered by the Union harmonisation legislation listed in Annex I is subject to the high-risk classification and conformity requirements of this Regulation.",
+      "scope": "AI systems that are products or safety components of products covered by Annex I Union harmonisation legislation (machinery, toys, lifts, medical devices, motor vehicles, civil aviation, etc.)",
+      "exceptions": [],
+      "codifiability": "medium",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex I",
+        "section": "Sections A and B",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/1689/oj"
+      }
+    },
+    {
+      "rule_id": "annex3_1a_remote_biometric_id",
+      "label": "Remote biometric identification systems are high-risk",
+      "condition": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "deployment_sector"
+              },
+              "biometric_id"
+            ]
+          },
+          {
+            "or": [
+              {
+                "==": [
+                  {
+                    "var": "real_time_biometric"
+                  },
+                  true
+                ]
+              },
+              {
+                "==": [
+                  {
+                    "var": "post_hoc_biometric"
+                  },
+                  true
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "Remote biometric identification systems permitted under Union or national law",
+      "exceptions": [
+        "Biometric verification whose sole purpose is to confirm a person is who they claim to be"
+      ],
+      "codifiability": "high",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "1(a)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_1b_biometric_categorisation",
+      "label": "Biometric categorisation by sensitive attributes is high-risk",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "biometric_id"
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI systems for biometric categorisation according to sensitive or protected attributes",
+      "exceptions": [],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "1(b)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_1c_emotion_recognition",
+      "label": "Emotion recognition systems are high-risk",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "biometric_id"
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI systems for emotion recognition",
+      "exceptions": [],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "1(c)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_2_critical_infrastructure",
+      "label": "AI safety components in critical infrastructure are high-risk",
+      "condition": {
+        "and": [
+          {
+            "==": [
+              {
+                "var": "deployment_sector"
+              },
+              "critical_infra"
+            ]
+          },
+          {
+            "==": [
+              {
+                "var": "involves_safety_component"
+              },
+              true
+            ]
+          }
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI safety components in management/operation of critical digital infrastructure, road traffic, water, gas, heating, electricity",
+      "exceptions": [],
+      "codifiability": "high",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "2",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_3_education",
+      "label": "Education and vocational training AI systems are high-risk",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "education"
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI for admission, evaluating learning outcomes, assessing education level, or monitoring prohibited behaviour during tests",
+      "exceptions": [],
+      "codifiability": "high",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "3",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_4_employment",
+      "label": "Employment and worker management AI systems are high-risk",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "employment"
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI for recruitment, selection, task allocation, promotion/termination decisions, or performance monitoring",
+      "exceptions": [],
+      "codifiability": "high",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "4",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_5b_creditworthiness",
+      "label": "Creditworthiness/credit scoring AI systems are high-risk",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "credit"
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI for evaluating creditworthiness or establishing credit score of natural persons",
+      "exceptions": [
+        "AI systems used solely for detecting financial fraud"
+      ],
+      "codifiability": "high",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "5(b)",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_5_essential_services",
+      "label": "Essential public/private services AI systems are high-risk",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "general"
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI for eligibility for public benefits, insurance risk/pricing, or emergency call evaluation/dispatch",
+      "exceptions": [],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "5",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_6_law_enforcement",
+      "label": "Law enforcement AI systems are high-risk",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "law_enforcement"
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI used by/for law enforcement for victim risk assessment, polygraphs, evidence reliability, offending risk, or profiling",
+      "exceptions": [],
+      "codifiability": "high",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "6",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_7_border",
+      "label": "Migration, asylum and border control AI systems are high-risk",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "border"
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI for polygraphs, risk assessment of entrants, examination of asylum/visa applications, or person detection/identification",
+      "exceptions": [
+        "Verification of travel documents"
+      ],
+      "codifiability": "high",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "7",
+        "url": ""
+      }
+    },
+    {
+      "rule_id": "annex3_8_justice_democracy",
+      "label": "Administration of justice and democratic processes AI systems are high-risk",
+      "condition": {
+        "==": [
+          {
+            "var": "deployment_sector"
+          },
+          "general"
+        ]
+      },
+      "obligation": "Classified as high-risk AI system subject to Chapter III requirements",
+      "scope": "AI assisting judicial authorities in fact/law interpretation, or influencing elections/referenda/voting behaviour",
+      "exceptions": [
+        "AI tools used only for administrative/logistical campaign organisation where persons are not directly exposed to output"
+      ],
+      "codifiability": "low",
+      "docref": {
+        "source_doc": "EU AI Act",
+        "article": "Annex III",
+        "section": "8",
+        "url": ""
+      }
+    }
+  ],
+  "scenarios": []
+}
