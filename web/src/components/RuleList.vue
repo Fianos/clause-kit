@@ -22,7 +22,7 @@ function resultFor(ruleId: string): RuleResult | undefined {
 }
 
 function statusClass(result: RuleResult | undefined): string {
-  if (!result) return 'pending'
+  if (!result) return ''
   if (result.matched === true) return 'matched'
   if (result.matched === false) return 'not-matched'
   return 'not-evaluable'
@@ -52,6 +52,7 @@ function statusLabel(result: RuleResult | undefined): string {
         <span class="expand-icon">{{ expanded.has(rule.rule_id) ? '▲' : '▼' }}</span>
       </div>
       <div v-if="expanded.has(rule.rule_id)" class="rule-inspector">
+        <!-- TODO: Inspector -->
         <p><strong>Rule ID:</strong> {{ rule.rule_id }}</p>
         <p><strong>Scope:</strong> {{ rule.scope }}</p>
         <p><strong>Obligation:</strong> {{ rule.obligation }}</p>
@@ -63,6 +64,7 @@ function statusLabel(result: RuleResult | undefined): string {
           <strong>Condition (JSON Logic):</strong>
           <pre>{{ JSON.stringify(rule.condition, null, 2) }}</pre>
         </div>
+        <div v-else class="condition-null">Not codifiable</div>
         <p>
           <strong>Source:</strong>
           {{ rule.docref.article }} {{ rule.docref.section }} —
@@ -92,7 +94,6 @@ function statusLabel(result: RuleResult | undefined): string {
 .rule-row.matched { border-left: 4px solid #2f9e44; }
 .rule-row.not-matched { border-left: 4px solid #e03131; }
 .rule-row.not-evaluable { border-left: 4px solid #868e96; }
-.rule-row.pending { border-left: 4px solid #dee2e6; }
 
 .rule-row-header { display: flex; align-items: center; gap: 8px; }
 
@@ -141,5 +142,10 @@ function statusLabel(result: RuleResult | undefined): string {
   font-size: 11px;
   overflow-x: auto;
   white-space: pre-wrap;
+}
+
+.condition-null {
+  color: #6c757d;
+  font-style: italic;
 }
 </style>
