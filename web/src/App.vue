@@ -19,13 +19,16 @@ const error = ref<string | null>(null)
 
 async function loadDomain(d: DomainId) {
   error.value = null
+  results.value = []
+  loading.value = true
   try {
     const [df, sc] = await Promise.all([fetchDomain(d), fetchScenarios(d)])
     rules.value = df.rules
     scenarios.value = sc
-    results.value = []
   } catch (e) {
     error.value = String(e)
+  } finally {
+    loading.value = false
   }
 }
 
@@ -36,6 +39,7 @@ watch(domain, async (d) => {
 
 function onLoadScenario(scenario: Scenario) {
   facts.value = { ...(scenario.facts as EuFacts | NdbFacts) }
+  runEvaluate()
 }
 
 async function runEvaluate() {
