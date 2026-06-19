@@ -3,34 +3,35 @@ import { test, expect } from '@playwright/test'
 test.describe('NDB domain', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
-    await page.waitForSelector('.scenario-bar button')
     await page.getByRole('button', { name: 'NDB (Australia)' }).click()
-    await page.waitForSelector('.scenario-bar button')
+    await page.waitForSelector('.rule-row')
   })
 
-  test('4 NDB scenario buttons are visible', async ({ page }) => {
-    const buttons = page.locator('.scenario-bar button')
-    await expect(buttons).toHaveCount(4)
+  test('loads 54 rules', async ({ page }) => {
+    const rows = page.locator('.rule-row')
+    await expect(rows).toHaveCount(54)
   })
 
-  test('clicking NDB scenario auto-evaluates and shows ResultsSummary', async ({ page }) => {
-    await page.getByRole('button', { name: /Unencrypted health records/i }).click()
-    await page.waitForSelector('.results-summary .count')
-    await expect(page.locator('.results-summary')).toBeVisible()
-  })
-
-  test('all rule rows are not-evaluable after NDB scenario evaluation', async ({ page }) => {
-    await page.getByRole('button', { name: /Unencrypted health records/i }).click()
+  test('unencrypted health scenario evaluates with all not-evaluable', async ({ page }) => {
+    await page.getByRole('button', { name: 'Unencrypted health records' }).click()
     await page.waitForSelector('.rule-row.not-evaluable')
-    expect(await page.locator('.rule-row.matched').count()).toBe(0)
-    expect(await page.locator('.rule-row.not-matched').count()).toBe(0)
-    expect(await page.locator('.rule-row.not-evaluable').count()).toBeGreaterThan(0)
+    const notEval = page.locator('.rule-row.not-evaluable')
+    expect(await notEval.count()).toBeGreaterThan(0)
+    const matched = page.locator('.rule-row.matched')
+    expect(await matched.count()).toBe(0)
   })
 
-  test('clicking a rule row expands inspector showing obligation text', async ({ page }) => {
-    const firstRow = page.locator('.rule-row').first()
-    await firstRow.click()
-    await expect(firstRow.locator('.rule-inspector')).toBeVisible()
-    await expect(firstRow.locator('.rule-inspector')).toContainText('Obligation')
+  test('results summary shows not-evaluable count', async ({ page }) => {
+    await page.getByRole('button', { name: 'Evaluate' }).click()
+    await page.waitForSelector('.count.not-evaluable')
+    const notEvalChip = page.locator('.count.not-evaluable')
+    await expect(notEvalChip).toBeVisible()
+    const text = await notEvalChip.textContent()
+    expect(parseInt(text ?? '0')).toBeGreaterThan(0)
+  })
+
+  test('data categories checkboxes are visible', async ({ page }) => {
+    const checkboxes = page.locator('.ndb-factors input[type="checkbox"]')
+    await expect(checkboxes).toHaveCount(5)
   })
 })

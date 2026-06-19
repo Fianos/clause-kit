@@ -1,51 +1,48 @@
 import { test, expect } from '@playwright/test'
 
 test.describe('EU AI Act domain', () => {
-  test('page loads with ClauseKit heading', async ({ page }) => {
+  test.beforeEach(async ({ page }) => {
     await page.goto('/')
-    await expect(page.getByRole('heading', { name: /ClauseKit/i })).toBeVisible()
+    await page.getByRole('button', { name: 'EU AI Act' }).click()
+    await page.waitForSelector('.rule-row')
   })
 
-  test('DomainSwitcher shows both tabs; EU AI Act is active by default', async ({ page }) => {
-    await page.goto('/')
-    const euBtn = page.getByRole('button', { name: 'EU AI Act' })
-    const ndbBtn = page.getByRole('button', { name: 'NDB (Australia)' })
-    await expect(euBtn).toBeVisible()
-    await expect(ndbBtn).toBeVisible()
-    await expect(euBtn).toHaveClass(/active/)
+  test('loads 32 rules', async ({ page }) => {
+    const rows = page.locator('.rule-row')
+    await expect(rows).toHaveCount(32)
   })
 
-  test('ScenarioBar shows at least one scenario button', async ({ page }) => {
-    await page.goto('/')
-    await page.waitForSelector('.scenario-bar button')
-    const buttons = page.locator('.scenario-bar button')
-    expect(await buttons.count()).toBeGreaterThan(0)
-  })
-
-  test('facial recognition scenario auto-evaluates and produces matched rows', async ({ page }) => {
-    await page.goto('/')
-    await page.waitForSelector('.scenario-bar button')
+  test('facial recognition scenario triggers matches', async ({ page }) => {
     await page.getByRole('button', { name: 'Facial recognition (public space)' }).click()
     await page.waitForSelector('.rule-row.matched')
-    await expect(page.locator('.results-summary')).toBeVisible()
+    const matched = page.locator('.rule-row.matched')
+    expect(await matched.count()).toBeGreaterThan(0)
+  })
+
+  test('customer service chatbot has no matches', async ({ page }) => {
+    await page.getByRole('button', { name: 'Customer service chatbot' }).click()
+    const matched = page.locator('.rule-row.matched')
+    expect(await matched.count()).toBe(0)
+    const notMatched = page.locator('.rule-row.not-matched')
+    expect(await notMatched.count()).toBeGreaterThan(0)
+  })
+
+  test('HR screening scenario has matches', async ({ page }) => {
+    await page.getByRole('button', { name: 'HR screening tool' }).click()
+    await page.waitForSelector('.rule-row.matched')
     expect(await page.locator('.rule-row.matched').count()).toBeGreaterThan(0)
   })
 
-  test('customer service chatbot scenario produces no matched rows', async ({ page }) => {
-    await page.goto('/')
-    await page.waitForSelector('.scenario-bar button')
-    await page.getByRole('button', { name: 'Customer service chatbot' }).click()
-    await page.waitForSelector('.results-summary .count')
-    expect(await page.locator('.rule-row.matched').count()).toBe(0)
+  test('clicking a rule expands the inspector', async ({ page }) => {
+    const firstRow = page.locator('.rule-row').first()
+    await firstRow.click()
+    await expect(firstRow.locator('.rule-inspector')).toBeVisible()
+    await expect(firstRow.locator('a')).toBeVisible()
   })
 
-  test('switching to NDB tab updates ScenarioBar to NDB scenarios', async ({ page }) => {
-    await page.goto('/')
-    await page.waitForSelector('.scenario-bar button')
-    await page.getByRole('button', { name: 'NDB (Australia)' }).click()
-    await page.waitForSelector('.scenario-bar button')
-    await expect(
-      page.getByRole('button', { name: /Unencrypted health records/i })
-    ).toBeVisible()
+  test('manual evaluate button triggers results', async ({ page }) => {
+    await page.getByRole('button', { name: 'Evaluate' }).click()
+    await page.waitForSelector('.count')
+    await expect(page.locator('.results-summary')).toBeVisible()
   })
 })
