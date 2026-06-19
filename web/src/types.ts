@@ -31,6 +31,7 @@ export interface DomainFile {
   version: string
   extracted_at: string
   source_url: string
+  model_version: string | null
   rules: Rule[]
   scenarios: Scenario[]
 }

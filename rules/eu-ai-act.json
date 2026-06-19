@@ -84,7 +84,7 @@
       "obligation": "The placing on the market, putting into service or use of AI systems that create or expand facial recognition databases through untargeted scraping of facial images from the internet or CCTV footage is prohibited.",
       "scope": "AI systems building facial recognition databases by scraping",
       "exceptions": [],
-      "codifiability": "high",
+      "codifiability": "medium",
       "docref": {
         "source_doc": "Regulation (EU) 2024/1689",
         "article": "Article 5",
@@ -538,14 +538,7 @@
     {
       "rule_id": "annex_1_nlf_harmonisation_list",
       "label": "Union harmonisation legislation based on New Legislative Framework (Section A)",
-      "condition": {
-        "==": [
-          {
-            "var": "involves_safety_component"
-          },
-          true
-        ]
-      },
+      "condition": null,
       "obligation": "An AI system intended as a safety component of, or itself a product covered by, the Union harmonisation legislation listed in Annex I Section A (machinery, toys, recreational craft, lifts, ATEX equipment, radio equipment, pressure equipment, cableway installations, PPE, gas appliances, medical devices, in vitro diagnostic medical devices) is treated as high-risk under Article 6(1) when conformity assessment is required.",
       "scope": "AI systems that are products or safety components of products covered by NLF-based Union harmonisation legislation",
       "exceptions": [],
@@ -561,14 +554,7 @@
     {
       "rule_id": "annex_1_other_harmonisation_list",
       "label": "Other Union harmonisation legislation (Section B)",
-      "condition": {
-        "==": [
-          {
-            "var": "involves_safety_component"
-          },
-          true
-        ]
-      },
+      "condition": null,
       "obligation": "An AI system intended as a safety component of, or itself a product covered by, the Union harmonisation legislation listed in Annex I Section B (civil aviation security, two/three-wheel vehicles, agricultural/forestry vehicles, marine equipment, rail interoperability, motor vehicles type-approval, general vehicle safety, civil aviation/EASA for unmanned aircraft) is treated as high-risk under Article 6(1) when conformity assessment is required.",
       "scope": "AI systems that are products or safety components of products covered by other Union harmonisation legislation listed in Section B",
       "exceptions": [],

@@ -95,6 +95,22 @@ Each rule in `rules/{domain}.json`:
 
 `condition` is null for `codifiability: "low"` rules (vague standard, not mechanically evaluable). `provision_uri` uses [ELI](https://eur-lex.europa.eu/eli-register/about.html) for EU legislation and [AKN FRBR](https://docs.oasis-open.org/legaldocml/akn-core/v1.0/akn-core-v1.0.html) for Australian legislation.
 
+## Limitations
+
+**JSON Logic expressiveness ceiling.** JSON Logic (`==`, `in`, `and`, `or`, `var`) cannot represent:
+- Temporal constraints (obligations with deadlines or sequencing)
+- Modal operators (obligatory / permitted / prohibited)
+- Defeasibility (rule A applies *unless* rule B overrides it)
+- Role-relative obligations (same provision applying differently to providers vs deployers)
+
+Provisions requiring these constructs are classified `low` codifiability and return `matched: null`.
+
+**Fact schema bounds expressiveness.** The fact schema is defined before extraction runs. The LLM can only produce conditions over the variables in the schema — it cannot discover new variables. Rules whose trigger conditions fall outside the schema are classified `low` regardless of their legislative clarity.
+
+**Codifiability is LLM-assigned, not human-validated.** Classifications have not been independently verified against the source legislation by domain experts.
+
+**Not a compliance tool.** ClauseKit is a demonstration of a pipeline, not legal advice. `matched: true` means the rule's coded condition fired — it does not mean you have a legal obligation. Consult a lawyer.
+
 ## Project status
 
 - [x] Ingestion (EUR-Lex HTML, legislation.gov.au EPUB)

@@ -34,6 +34,7 @@ class DomainFile(BaseModel):
     version: str
     extracted_at: str
     source_url: str
+    model_version: str | None = None
     rules: list[Rule]
     scenarios: list[Scenario]
 

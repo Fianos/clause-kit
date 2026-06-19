@@ -7,22 +7,7 @@
     {
       "rule_id": "26WA-eligible-data-breach-definition",
       "label": "Eligible data breach definition",
-      "condition": {
-        "and": [
-          {
-            "in": [
-              {
-                "var": "incident_type"
-              },
-              [
-                "unauthorised_access",
-                "unauthorised_disclosure",
-                "loss"
-              ]
-            ]
-          }
-        ]
-      },
+      "condition": null,
       "obligation": "An eligible data breach happens if there is unauthorised access to, unauthorised disclosure of, or loss of, personal information held by an entity, and the access, disclosure or loss is likely to result in serious harm to any of the individuals to whom the information relates.",
       "scope": "Entities holding personal information under the NDB scheme",
       "exceptions": [],
@@ -118,18 +103,7 @@
     {
       "rule_id": "26WD-1",
       "label": "Exception for My Health Records Act notification",
-      "condition": {
-        "in": [
-          {
-            "var": "incident_type"
-          },
-          [
-            "unauthorised_access",
-            "unauthorised_disclosure",
-            "loss"
-          ]
-        ]
-      },
+      "condition": null,
       "obligation": "This Part (NDB scheme) does not apply in relation to the access, disclosure or loss if it has been, or is required to be, notified under section 75 of the My Health Records Act 2012.",
       "scope": "Information incidents already covered by My Health Records Act 2012 notification requirements",
       "exceptions": [],
@@ -145,21 +119,7 @@
     {
       "rule_id": "26WE-2-a-access-disclosure",
       "label": "Eligible data breach via unauthorised access or disclosure with likely serious harm",
-      "condition": {
-        "and": [
-          {
-            "in": [
-              {
-                "var": "incident_type"
-              },
-              [
-                "unauthorised_access",
-                "unauthorised_disclosure"
-              ]
-            ]
-          }
-        ]
-      },
+      "condition": null,
       "obligation": "Where there is unauthorised access to or unauthorised disclosure of the information and a reasonable person would conclude the access or disclosure would be likely to result in serious harm to any affected individual, this constitutes an eligible data breach and the individual is at risk from it.",
       "scope": "APP entities, credit reporting bodies, credit providers and file number recipients holding relevant personal/credit/tax file number information",
       "exceptions": [
@@ -177,18 +137,7 @@
     {
       "rule_id": "26WE-2-b-loss",
       "label": "Eligible data breach via loss likely to result in unauthorised access/disclosure and serious harm",
-      "condition": {
-        "and": [
-          {
-            "==": [
-              {
-                "var": "incident_type"
-              },
-              "loss"
-            ]
-          }
-        ]
-      },
+      "condition": null,
       "obligation": "Where information is lost in circumstances where unauthorised access or disclosure is likely to occur and, assuming such access or disclosure occurred, a reasonable person would conclude it would be likely to result in serious harm to any affected individual, this constitutes an eligible data breach and the individual is at risk from it.",
       "scope": "APP entities, credit reporting bodies, credit providers and file number recipients holding relevant personal/credit/tax file number information",
       "exceptions": [
@@ -206,17 +155,7 @@
     {
       "rule_id": "26WF-1",
       "label": "Remedial action for access/disclosure prevents eligible data breach",
-      "condition": {
-        "in": [
-          {
-            "var": "incident_type"
-          },
-          [
-            "unauthorised_access",
-            "unauthorised_disclosure"
-          ]
-        ]
-      },
+      "condition": null,
       "obligation": "Where an APP entity takes remedial action in relation to an unauthorised access or disclosure before it results in serious harm, and as a result a reasonable person would conclude the access or disclosure would not be likely to result in serious harm to any affected individual, the access or disclosure is taken never to have been an eligible data breach.",
       "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
       "exceptions": [],
@@ -232,17 +171,7 @@
     {
       "rule_id": "26WF-2",
       "label": "Remedial action for access/disclosure removes notification requirement for particular individual",
-      "condition": {
-        "in": [
-          {
-            "var": "incident_type"
-          },
-          [
-            "unauthorised_access",
-            "unauthorised_disclosure"
-          ]
-        ]
-      },
+      "condition": null,
       "obligation": "Where remedial action is taken before serious harm results to a particular individual, and as a result a reasonable person would conclude the access or disclosure would not be likely to result in serious harm to that individual, this Part does not require notifying that individual of the statement contents relating to the access or disclosure.",
       "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
       "exceptions": [],
@@ -258,14 +187,7 @@
     {
       "rule_id": "26WF-3",
       "label": "Remedial action for loss before unauthorised access/disclosure prevents eligible data breach",
-      "condition": {
-        "==": [
-          {
-            "var": "incident_type"
-          },
-          "loss"
-        ]
-      },
+      "condition": null,
       "obligation": "Where a loss of information is covered and the entity takes action before there is any unauthorised access to or disclosure of the information, and as a result there is no unauthorised access or disclosure, the loss is taken never to have been an eligible data breach.",
       "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
       "exceptions": [],
@@ -281,14 +203,7 @@
     {
       "rule_id": "26WF-4",
       "label": "Remedial action for loss after unauthorised access/disclosure prevents eligible data breach",
-      "condition": {
-        "==": [
-          {
-            "var": "incident_type"
-          },
-          "loss"
-        ]
-      },
+      "condition": null,
       "obligation": "Where a loss of information is covered and the entity takes action after unauthorised access or disclosure occurs but before it results in serious harm, and as a result a reasonable person would conclude the access or disclosure would not be likely to result in serious harm to any affected individual, the loss is taken never to have been an eligible data breach.",
       "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
       "exceptions": [],
@@ -304,14 +219,7 @@
     {
       "rule_id": "26WF-5",
       "label": "Remedial action for loss removes notification requirement for particular individual",
-      "condition": {
-        "==": [
-          {
-            "var": "incident_type"
-          },
-          "loss"
-        ]
-      },
+      "condition": null,
       "obligation": "Where a loss is covered and the entity takes action after unauthorised access or disclosure but before serious harm results to a particular individual, and as a result a reasonable person would conclude the access or disclosure would not be likely to result in serious harm to that individual, this Part does not require notifying that individual of the statement contents relating to the loss.",
       "scope": "APP entities, credit reporting bodies, credit providers, file number recipients",
       "exceptions": [],
