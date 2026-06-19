@@ -41,6 +41,18 @@ const EU_BOOL_FIELDS: { key: keyof EuFacts; label: string }[] = [
   { key: 'art6_3_exception_preparatory_task', label: 'Art 6(3) exception: preparatory task' },
   { key: 'art6_3_exception_contravention_check', label: 'Art 6(3) exception: contravention check' },
 ]
+
+const EU_BOOL_TOOLTIPS: Partial<Record<keyof EuFacts, string>> = {
+  publicly_accessible_spaces: 'System operates in spaces the general public can access (streets, shopping centres, airports)',
+  involves_safety_component: 'System is a safety component of a product covered by EU harmonisation legislation',
+  is_gpai_model: 'System is a General Purpose AI model (e.g. a foundation model or large language model)',
+  real_time_biometric: 'System identifies people in real-time using biometric data (face, gait, fingerprint) in public spaces',
+  post_hoc_biometric: 'System identifies people after the fact from recorded footage or data',
+  art6_3_exception_narrow_procedure: 'System only assists a human decision-maker via a preparatory assessment; it does not make or influence the final decision',
+  art6_3_exception_human_override: 'Every output is reviewed and can be overridden by a human before it takes effect',
+  art6_3_exception_preparatory_task: 'System performs only a preparatory task that is not directly decisive for any individual outcome',
+  art6_3_exception_contravention_check: 'System only detects possible contraventions of EU law; it does not assess people',
+}
 </script>
 
 <template>
@@ -66,7 +78,7 @@ const EU_BOOL_FIELDS: { key: keyof EuFacts; label: string }[] = [
         </select>
       </div>
       <div class="bool-fields">
-        <label v-for="f in EU_BOOL_FIELDS" :key="f.key" class="bool-field">
+        <label v-for="f in EU_BOOL_FIELDS" :key="f.key" class="bool-field" :title="EU_BOOL_TOOLTIPS[f.key]">
           <input
             type="checkbox"
             :checked="(euFacts[f.key] as boolean)"

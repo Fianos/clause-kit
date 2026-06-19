@@ -19,7 +19,7 @@ const hasResults = computed(() => props.results.length > 0)
     <template v-else-if="hasResults">
       <span class="count matched">{{ matched }} matched</span>
       <span class="count not-matched">{{ notMatched }} no match</span>
-      <span class="count not-evaluable">{{ notEvaluable }} not evaluable</span>
+      <span class="count not-evaluable">{{ notEvaluable }} Needs expert judgement</span>
       <span class="total">of {{ results.length }} rules</span>
     </template>
     <span v-else class="prompt">Configure facts and click Evaluate</span>

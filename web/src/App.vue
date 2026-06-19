@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import DomainSwitcher from './components/DomainSwitcher.vue'
 import ScenarioBar from './components/ScenarioBar.vue'
 import SandboxPane from './components/SandboxPane.vue'
@@ -16,6 +16,14 @@ const scenarios = ref<Scenario[]>([])
 const results = ref<RuleResult[]>([])
 const loading = ref(false)
 const error = ref<string | null>(null)
+const evaluatedFacts = ref<EuFacts | NdbFacts | null>(null)
+const activeScenarioLabel = ref<string | null>(null)
+const activeScenarioDescription = ref<string | null>(null)
+
+const isStale = computed(() =>
+  results.value.length > 0 &&
+  JSON.stringify(facts.value) !== JSON.stringify(evaluatedFacts.value)
+)
 
 async function loadDomain(d: DomainId) {
   error.value = null
@@ -34,11 +42,15 @@ async function loadDomain(d: DomainId) {
 
 watch(domain, async (d) => {
   facts.value = d === 'eu-ai-act' ? { ...DEFAULT_EU_FACTS } : { ...DEFAULT_NDB_FACTS }
+  activeScenarioLabel.value = null
+  activeScenarioDescription.value = null
   await loadDomain(d)
 }, { immediate: true })
 
 function onLoadScenario(scenario: Scenario) {
   facts.value = { ...(scenario.facts as EuFacts | NdbFacts) }
+  activeScenarioLabel.value = scenario.label
+  activeScenarioDescription.value = scenario.description
   runEvaluate()
 }
 
@@ -47,6 +59,7 @@ async function runEvaluate() {
   error.value = null
   try {
     results.value = await apiEvaluate(domain.value, facts.value as Record<string, unknown>)
+    evaluatedFacts.value = JSON.parse(JSON.stringify(facts.value))
   } catch (e) {
     error.value = String(e)
   } finally {
@@ -67,6 +80,9 @@ async function runEvaluate() {
     <main class="main">
       <aside class="sidebar">
         <ScenarioBar :scenarios="scenarios" @load="onLoadScenario" />
+        <div v-if="domain === 'ndb'" class="domain-notice">
+          All NDB provisions require expert legal judgement — no rules are machine-evaluable under the current fact schema. Results show the contrast with the EU AI Act domain.
+        </div>
         <SandboxPane
           :domain="domain"
           :facts="facts"
@@ -76,8 +92,16 @@ async function runEvaluate() {
       </aside>
 
       <section class="results">
+        <div v-if="activeScenarioLabel" class="scenario-context">
+          <strong>{{ activeScenarioLabel }}</strong>
+          <span v-if="activeScenarioDescription"> — {{ activeScenarioDescription }}</span>
+        </div>
         <ResultsSummary :results="results" :loading="loading" />
-        <RuleList :rules="rules" :results="results" />
+        <div v-if="isStale" class="stale-banner">Facts changed — click Evaluate to update results.</div>
+        <div v-if="results.length === 0 && !loading && rules.length > 0" class="rules-empty">
+          Select a scenario preset or configure facts and click Evaluate to see which rules apply.
+        </div>
+        <RuleList v-else :rules="rules" :results="results" />
       </section>
     </main>
   </div>
@@ -94,4 +118,8 @@ async function runEvaluate() {
 .main { display: flex; gap: 16px; padding: 16px 20px; flex: 1; align-items: flex-start; }
 .sidebar { width: 280px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px; position: sticky; top: 60px; }
 .results { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.domain-notice { background: #fff3cd; border: 1px solid #ffc107; border-radius: 4px; padding: 8px 12px; font-size: 13px; color: #664d03; }
+.stale-banner { background: #e7f5ff; border: 1px solid #74c0fc; border-radius: 4px; padding: 6px 12px; font-size: 13px; color: #1864ab; margin-bottom: 8px; }
+.scenario-context { font-size: 13px; color: #495057; margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #1971c2; }
+.rules-empty { text-align: center; color: #868e96; font-size: 14px; padding: 40px 20px; }
 </style>

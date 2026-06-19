@@ -32,8 +32,10 @@ function statusLabel(result: RuleResult | undefined): string {
   if (!result) return '—'
   if (result.matched === true) return 'MATCHED'
   if (result.matched === false) return 'NO MATCH'
-  return 'NOT EVALUABLE'
+  return 'Needs expert judgement'
 }
+
+const NOT_EVALUABLE_TITLE = "This provision uses vague standards (e.g. 'reasonable steps', 'significant harm') that cannot be reduced to a mechanical yes/no test"
 </script>
 
 <template>
@@ -46,7 +48,10 @@ function statusLabel(result: RuleResult | undefined): string {
       @click="toggle(rule.rule_id)"
     >
       <div class="rule-row-header">
-        <span class="status-chip">{{ statusLabel(resultFor(rule.rule_id)) }}</span>
+        <span
+          class="status-chip"
+          :title="statusClass(resultFor(rule.rule_id)) === 'not-evaluable' ? NOT_EVALUABLE_TITLE : undefined"
+        >{{ statusLabel(resultFor(rule.rule_id)) }}</span>
         <span class="rule-label">{{ rule.label }}</span>
         <span class="codif-badge" :class="rule.codifiability">{{ rule.codifiability }}</span>
         <span class="expand-icon">{{ expanded.has(rule.rule_id) ? '▲' : '▼' }}</span>
