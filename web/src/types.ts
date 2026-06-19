@@ -43,6 +43,7 @@ export interface RuleResult {
   label: string
   obligation: string
   docref: Docref
+  matched_facts: Record<string, unknown> | null
 }
 
 // EU AI Act fact schema

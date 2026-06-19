@@ -79,6 +79,15 @@ const NOT_EVALUABLE_TITLE = "This provision uses vague standards (e.g. 'reasonab
           <strong>Provision URI:</strong>
           <code>{{ rule.docref.provision_uri }}</code>
         </p>
+        <div v-if="resultFor(rule.rule_id)?.matched !== null && resultFor(rule.rule_id)?.matched_facts && Object.keys(resultFor(rule.rule_id)?.matched_facts ?? {}).length > 0" class="matched-facts">
+          <div class="inspector-label">Evaluated facts</div>
+          <ul class="fact-list">
+            <li v-for="(val, key) in (resultFor(rule.rule_id)?.matched_facts ?? {})" :key="String(key)" :class="val ? 'fact-true' : 'fact-false'">
+              <span class="fact-key">{{ key }}</span>
+              <span class="fact-val">{{ val === true ? 'yes' : val === false ? 'no' : String(val) }}</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -153,4 +162,13 @@ const NOT_EVALUABLE_TITLE = "This provision uses vague standards (e.g. 'reasonab
   color: #6c757d;
   font-style: italic;
 }
+
+.matched-facts { margin-top: 8px; }
+.fact-list { list-style: none; padding: 0; margin: 4px 0 0 0; display: flex; flex-direction: column; gap: 3px; }
+.fact-list li { display: flex; justify-content: space-between; font-size: 12px; padding: 2px 6px; border-radius: 3px; }
+.fact-true { background: #ebfbee; color: #2f9e44; }
+.fact-false { background: #fff5f5; color: #c92a2a; }
+.fact-key { font-family: monospace; }
+.fact-val { font-weight: 600; }
+.inspector-label { font-size: 11px; font-weight: 600; color: #868e96; text-transform: uppercase; letter-spacing: 0.05em; }
 </style>

@@ -72,3 +72,4 @@ class RuleResult(BaseModel):
     label: str
     obligation: str
     docref: Docref
+    matched_facts: dict[str, object] | None = None
