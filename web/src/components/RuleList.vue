@@ -1,47 +1,80 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
 import type { Rule, RuleResult } from '../types'
 
 const props = defineProps<{
   rules: Rule[]
   results: RuleResult[]
+  filter: 'matched' | 'not-matched' | 'not-evaluable' | null
 }>()
 
 const expanded = ref<Set<string>>(new Set())
 
+watch(() => props.results, () => { expanded.value = new Set() })
+
 function toggle(ruleId: string) {
-  if (expanded.value.has(ruleId)) {
-    expanded.value.delete(ruleId)
-  } else {
-    expanded.value.add(ruleId)
-  }
+  const next = new Set(expanded.value)
+  if (next.has(ruleId)) { next.delete(ruleId) } else { next.add(ruleId) }
+  expanded.value = next
 }
 
+const resultMap = computed(() => new Map(props.results.map(r => [r.rule_id, r])))
+
 function resultFor(ruleId: string): RuleResult | undefined {
-  return props.results.find(r => r.rule_id === ruleId)
+  return resultMap.value.get(ruleId)
 }
+
+const CODIF_RANK: Record<string, number> = { high: 0, medium: 1, low: 2 }
+const STATUS_RANK = (r: RuleResult | undefined) =>
+  r?.matched === true ? 0 : r?.matched === null ? 1 : 2
+
+const filteredRules = computed(() => {
+  let list = props.rules
+  if (props.filter && props.results.length > 0) {
+    list = list.filter(rule => {
+      const r = resultMap.value.get(rule.rule_id)
+      if (!r) return false
+      if (props.filter === 'matched') return r.matched === true
+      if (props.filter === 'not-matched') return r.matched === false
+      if (props.filter === 'not-evaluable') return r.matched === null
+      return true
+    })
+  }
+  if (props.results.length === 0) return list
+  return [...list].sort((a, b) => {
+    const codifDiff = CODIF_RANK[a.codifiability] - CODIF_RANK[b.codifiability]
+    if (codifDiff !== 0) return codifDiff
+    return STATUS_RANK(resultMap.value.get(a.rule_id)) - STATUS_RANK(resultMap.value.get(b.rule_id))
+  })
+})
 
 function statusClass(result: RuleResult | undefined): string {
   if (!result) return ''
-  if (result.matched === true) return 'matched'
-  if (result.matched === false) return 'not-matched'
+  if (result.matched === true) return 'applies'
+  if (result.matched === false) return 'not-triggered'
   return 'not-evaluable'
 }
 
 function statusLabel(result: RuleResult | undefined): string {
   if (!result) return '—'
-  if (result.matched === true) return 'MATCHED'
-  if (result.matched === false) return 'NO MATCH'
-  return 'Needs expert judgement'
+  if (result.matched === true) return 'APPLIES'
+  if (result.matched === false) return 'NOT TRIGGERED'
+  return 'NEEDS REVIEW'
 }
 
-const NOT_EVALUABLE_TITLE = "This provision uses vague standards (e.g. 'reasonable steps', 'significant harm') that cannot be reduced to a mechanical yes/no test"
+const CODIF_TITLES: Record<string, string> = {
+  high: 'High codifiability — fully machine-evaluable as JSON Logic',
+  medium: 'Medium codifiability — partially machine-evaluable; some conditions require context',
+  low: 'Low codifiability — vague standard (e.g. "reasonable steps", "serious harm") that cannot be reduced to a mechanical test; expert legal judgement required',
+}
+
+const NOT_EVALUABLE_TITLE = "This provision uses vague standards that cannot be reduced to a mechanical yes/no test — expert legal judgement required"
 </script>
 
 <template>
   <div class="rule-list">
     <div
-      v-for="rule in rules"
+      v-for="rule in filteredRules"
       :key="rule.rule_id"
       class="rule-row"
       :class="statusClass(resultFor(rule.rule_id))"
@@ -53,7 +86,7 @@ const NOT_EVALUABLE_TITLE = "This provision uses vague standards (e.g. 'reasonab
           :title="statusClass(resultFor(rule.rule_id)) === 'not-evaluable' ? NOT_EVALUABLE_TITLE : undefined"
         >{{ statusLabel(resultFor(rule.rule_id)) }}</span>
         <span class="rule-label">{{ rule.label }}</span>
-        <span class="codif-badge" :class="rule.codifiability">{{ rule.codifiability }}</span>
+        <span class="codif-badge" :class="rule.codifiability" :title="CODIF_TITLES[rule.codifiability]">{{ rule.codifiability }}</span>
         <span class="expand-icon">{{ expanded.has(rule.rule_id) ? '▲' : '▼' }}</span>
       </div>
       <div v-if="expanded.has(rule.rule_id)" class="rule-inspector">
@@ -105,9 +138,9 @@ const NOT_EVALUABLE_TITLE = "This provision uses vague standards (e.g. 'reasonab
   transition: background 0.1s;
 }
 .rule-row:hover { background: #f1f3f5; }
-.rule-row.matched { border-left: 4px solid #2f9e44; }
-.rule-row.not-matched { border-left: 4px solid #e03131; }
-.rule-row.not-evaluable { border-left: 4px solid #868e96; }
+.rule-row.applies { border-left: 4px solid #1971c2; }
+.rule-row.not-triggered { border-left: 4px solid #dee2e6; }
+.rule-row.not-evaluable { border-left: 4px solid #e67700; }
 
 .rule-row-header { display: flex; align-items: center; gap: 8px; }
 
@@ -121,9 +154,9 @@ const NOT_EVALUABLE_TITLE = "This provision uses vague standards (e.g. 'reasonab
   background: #e9ecef;
   color: #495057;
 }
-.matched .status-chip { background: #ebfbee; color: #2f9e44; }
-.not-matched .status-chip { background: #fff5f5; color: #e03131; }
-.not-evaluable .status-chip { background: #f1f3f5; color: #868e96; }
+.applies .status-chip { background: #e7f5ff; color: #1971c2; }
+.not-triggered .status-chip { background: #f1f3f5; color: #868e96; }
+.not-evaluable .status-chip { background: #fff9db; color: #e67700; font-style: italic; }
 
 .rule-label { flex: 1; font-size: 13px; }
 

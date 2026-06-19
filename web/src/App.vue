@@ -19,6 +19,7 @@ const error = ref<string | null>(null)
 const evaluatedFacts = ref<EuFacts | NdbFacts | null>(null)
 const activeScenarioLabel = ref<string | null>(null)
 const activeScenarioDescription = ref<string | null>(null)
+const filterStatus = ref<'matched' | 'not-matched' | 'not-evaluable' | null>(null)
 
 const isStale = computed(() =>
   results.value.length > 0 &&
@@ -44,6 +45,7 @@ watch(domain, async (d) => {
   facts.value = d === 'eu-ai-act' ? { ...DEFAULT_EU_FACTS } : { ...DEFAULT_NDB_FACTS }
   activeScenarioLabel.value = null
   activeScenarioDescription.value = null
+  filterStatus.value = null
   await loadDomain(d)
 }, { immediate: true })
 
@@ -51,6 +53,7 @@ function onLoadScenario(scenario: Scenario) {
   facts.value = { ...(scenario.facts as EuFacts | NdbFacts) }
   activeScenarioLabel.value = scenario.label
   activeScenarioDescription.value = scenario.description
+  filterStatus.value = null
   runEvaluate()
 }
 
@@ -96,12 +99,12 @@ async function runEvaluate() {
           <strong>{{ activeScenarioLabel }}</strong>
           <span v-if="activeScenarioDescription"> — {{ activeScenarioDescription }}</span>
         </div>
-        <ResultsSummary :results="results" :loading="loading" />
+        <ResultsSummary :results="results" :loading="loading" :filter="filterStatus" @update:filter="filterStatus = $event" />
         <div v-if="isStale" class="stale-banner">Facts changed — click Evaluate to update results.</div>
         <div v-if="results.length === 0 && !loading && rules.length > 0" class="rules-empty">
           Select a scenario preset or configure facts and click Evaluate to see which rules apply.
         </div>
-        <RuleList v-else :rules="rules" :results="results" />
+        <RuleList v-else :rules="rules" :results="results" :filter="filterStatus" />
       </section>
     </main>
   </div>
