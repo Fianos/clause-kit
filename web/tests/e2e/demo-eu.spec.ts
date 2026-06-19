@@ -21,6 +21,7 @@ test.describe('EU AI Act domain', () => {
 
   test('customer service chatbot has no matches', async ({ page }) => {
     await page.getByRole('button', { name: 'Customer service chatbot' }).click()
+    await page.waitForSelector('.rule-row.not-matched')
     const matched = page.locator('.rule-row.matched')
     expect(await matched.count()).toBe(0)
     const notMatched = page.locator('.rule-row.not-matched')
