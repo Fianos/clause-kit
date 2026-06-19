@@ -117,6 +117,6 @@ Provisions requiring these constructs are classified `low` codifiability and ret
 - [x] LLM extraction with JSON Logic conditions
 - [x] Provenance grounding
 - [x] Pre-built rule sets for EU AI Act and NDB
-- [ ] FastAPI evaluation endpoint (`src/api.py`)
-- [ ] Vue 3 sandbox UI (`web/`)
-- [ ] Playwright E2E tests
+- [x] FastAPI evaluation endpoint (`src/api.py`)
+- [x] Vue 3 sandbox UI (`web/`)
+- [x] Playwright E2E tests

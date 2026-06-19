@@ -4,6 +4,7 @@ test.describe('EU AI Act domain', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/')
     await page.getByRole('button', { name: 'EU AI Act' }).click()
+    await page.getByRole('button', { name: 'HR screening tool' }).click()
     await page.waitForSelector('.rule-row')
   })
 
@@ -14,24 +15,24 @@ test.describe('EU AI Act domain', () => {
 
   test('facial recognition scenario triggers matches', async ({ page }) => {
     await page.getByRole('button', { name: 'Facial recognition (public space)' }).click()
-    await page.waitForSelector('.rule-row.matched')
-    const matched = page.locator('.rule-row.matched')
+    await page.waitForSelector('.rule-row.applies')
+    const matched = page.locator('.rule-row.applies')
     expect(await matched.count()).toBeGreaterThan(0)
   })
 
   test('customer service chatbot has no matches', async ({ page }) => {
     await page.getByRole('button', { name: 'Customer service chatbot' }).click()
-    await page.waitForSelector('.rule-row.not-matched')
-    const matched = page.locator('.rule-row.matched')
+    await page.waitForSelector('.rule-row.not-triggered')
+    const matched = page.locator('.rule-row.applies')
     expect(await matched.count()).toBe(0)
-    const notMatched = page.locator('.rule-row.not-matched')
+    const notMatched = page.locator('.rule-row.not-triggered')
     expect(await notMatched.count()).toBeGreaterThan(0)
   })
 
   test('HR screening scenario has matches', async ({ page }) => {
     await page.getByRole('button', { name: 'HR screening tool' }).click()
-    await page.waitForSelector('.rule-row.matched')
-    expect(await page.locator('.rule-row.matched').count()).toBeGreaterThan(0)
+    await page.waitForSelector('.rule-row.applies')
+    expect(await page.locator('.rule-row.applies').count()).toBeGreaterThan(0)
   })
 
   test('clicking a rule expands the inspector', async ({ page }) => {
