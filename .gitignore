@@ -6,5 +6,7 @@
 __pycache__/
 data/*.html
 data/*.pdf
+docs/
 node_modules/
 web/dist/
+web/test-results/
