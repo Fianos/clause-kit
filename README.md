@@ -66,7 +66,7 @@ Source HTML files are gitignored. Download them separately:
 ## Run tests
 
 ```bash
-.venv/bin/pytest          # 15 tests
+.venv/bin/pytest          # 33 tests
 .venv/bin/pytest -v       # verbose
 ```
 
