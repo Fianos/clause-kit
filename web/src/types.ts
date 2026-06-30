@@ -104,3 +104,10 @@ export const DEFAULT_NDB_FACTS: NdbFacts = {
   likely_recipient: 'unknown',
   individual_vulnerability: 'general',
 }
+
+export interface ComparisonResult {
+  domain: string
+  section_id: string
+  plain_rules: Rule[]
+  akn_rules: Rule[]
+}

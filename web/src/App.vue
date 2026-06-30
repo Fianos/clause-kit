@@ -5,6 +5,7 @@ import ScenarioBar from './components/ScenarioBar.vue'
 import SandboxPane from './components/SandboxPane.vue'
 import ResultsSummary from './components/ResultsSummary.vue'
 import RuleList from './components/RuleList.vue'
+import ComparePane from './components/ComparePane.vue'
 import { fetchDomain, fetchScenarios, evaluate as apiEvaluate } from './api'
 import type { DomainId, EuFacts, NdbFacts, Rule, RuleResult, Scenario } from './types'
 import { DEFAULT_EU_FACTS, DEFAULT_NDB_FACTS } from './types'
@@ -20,6 +21,7 @@ const evaluatedFacts = ref<EuFacts | NdbFacts | null>(null)
 const activeScenarioLabel = ref<string | null>(null)
 const activeScenarioDescription = ref<string | null>(null)
 const filterStatus = ref<'matched' | 'not-matched' | 'not-evaluable' | null>(null)
+const mode = ref<'evaluate' | 'compare'>('evaluate')
 
 const isStale = computed(() =>
   results.value.length > 0 &&
@@ -75,12 +77,16 @@ async function runEvaluate() {
   <div class="app">
     <header class="header">
       <h1 class="title">ClauseKit</h1>
-      <DomainSwitcher v-model="domain" />
+      <DomainSwitcher v-if="mode === 'evaluate'" v-model="domain" />
+      <nav class="mode-nav">
+        <button :class="['mode-btn', { active: mode === 'evaluate' }]" @click="mode = 'evaluate'">Evaluate</button>
+        <button :class="['mode-btn', { active: mode === 'compare' }]" @click="mode = 'compare'">Compare</button>
+      </nav>
     </header>
 
     <div v-if="error" class="error-banner">{{ error }}</div>
 
-    <main class="main">
+    <main class="main" v-if="mode === 'evaluate'">
       <aside class="sidebar">
         <ScenarioBar :scenarios="scenarios" @load="onLoadScenario" />
         <div v-if="domain === 'ndb'" class="domain-notice">
@@ -107,6 +113,7 @@ async function runEvaluate() {
         <RuleList v-else :rules="rules" :results="results" :filter="filterStatus" />
       </section>
     </main>
+    <ComparePane v-else />
   </div>
 </template>
 
@@ -125,4 +132,8 @@ async function runEvaluate() {
 .stale-banner { background: #e7f5ff; border: 1px solid #74c0fc; border-radius: 4px; padding: 6px 12px; font-size: 13px; color: #1864ab; margin-bottom: 8px; }
 .scenario-context { font-size: 13px; color: #495057; margin-bottom: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; border-left: 3px solid #1971c2; }
 .rules-empty { text-align: center; color: #868e96; font-size: 14px; padding: 40px 20px; }
+.mode-nav { display: flex; gap: 4px; margin-left: auto; }
+.mode-btn { padding: 5px 14px; border: 1px solid #dee2e6; border-radius: 4px; background: #fff; font-size: 13px; cursor: pointer; color: #495057; }
+.mode-btn.active { background: #1971c2; color: #fff; border-color: #1971c2; }
+.mode-btn:not(.active):hover { background: #f8f9fa; }
 </style>
