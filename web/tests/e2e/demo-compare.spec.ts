@@ -83,7 +83,7 @@ test.describe('Compare mode', () => {
   })
 
   test('switching back to Evaluate restores main view', async ({ page }) => {
-    await page.getByRole('button', { name: 'Evaluate' }).click()
+    await page.getByRole('button', { name: 'Rules' }).click()
     await expect(page.locator('.sidebar')).toBeVisible()
     await expect(page.locator('.compare-pane')).not.toBeVisible()
   })

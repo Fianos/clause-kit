@@ -79,7 +79,7 @@ async function runEvaluate() {
       <h1 class="title">ClauseKit</h1>
       <DomainSwitcher v-if="mode === 'evaluate'" v-model="domain" />
       <nav class="mode-nav">
-        <button :class="['mode-btn', { active: mode === 'evaluate' }]" @click="mode = 'evaluate'">Evaluate</button>
+        <button :class="['mode-btn', { active: mode === 'evaluate' }]" @click="mode = 'evaluate'">Rules</button>
         <button :class="['mode-btn', { active: mode === 'compare' }]" @click="mode = 'compare'">Compare</button>
       </nav>
     </header>
