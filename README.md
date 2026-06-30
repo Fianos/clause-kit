@@ -2,19 +2,34 @@
 
 Convert legislation into evaluatable rules using an LLM extraction pipeline. Runs conditions as [JSON Logic](https://jsonlogic.com/) against a typed fact schema, with provenance grounding back to the source article.
 
-Two domains shipped:
+**Status: v0.3.0** — EU AI Act and NDB rules committed; Privacy APPs, SSA bereavement, and SIS death benefits schemas ready, extraction deferred.
+
+## Versions
+
+- **v0.3.0** — 2026-06-30: AKN XML ingest path (`chunk_by_section_akn`, `chunk_by_schedule_clause`); pipeline branching on source type; Privacy APPs, SSA bereavement, SIS death benefits domain schemas and fact models. Extraction runs deferred.
+- **v0.2.0** — 2026-06-30: AKN vs plain-text comparison (`POST /compare`, `ComparePane.vue`). Validates that AKN path captures all incident types where plain-text misses branching (NDB s.26WA).
+- **v0.1.0** — 2026-06-19: EU AI Act and NDB scheme extraction, JSON Logic engine, provenance grounding, FastAPI, Vue 3 sandbox UI, Playwright E2E tests.
+
+## Domains
 
 | Domain | Source | Rules | Scenarios |
 |---|---|---|---|
 | EU AI Act | Regulation (EU) 2024/1689, Arts 5, 6, Annex I, III | 32 | 5 |
 | NDB scheme | Privacy Act 1988 (Cth), ss.26WA-26WR | 54 | 4 |
+| Privacy APPs | Privacy Act 1988 (Cth), Schedule 1 (APPs 1-13) | pending | — |
+| SSA bereavement | Social Security Act 1991 (Cth), bereavement provisions | pending | — |
+| SIS death benefits | Superannuation Industry (Supervision) Act 1993 (Cth), ss.55A-55C, 68AA-68AAF | pending | — |
 
 ## Architecture
 
 ```
-legislation HTML
+legislation source
       │
-   ingest.py          chunk by article (allowlist-filtered)
+      ├── HTML (EUR-Lex, legislation.gov.au EPUB)
+      │         ingest.py → chunk_by_article
+      │
+      └── AKN XML (lex-au corpus)
+                ingest.py → chunk_by_section_akn / chunk_by_schedule_clause
       │
    extract.py         Claude claude-opus-4-8 → Rule[] (JSON Logic conditions)
       │
@@ -26,6 +41,8 @@ legislation HTML
       │
    web/               Vue 3 sandbox UI (fact form → matched rules)
 ```
+
+AKN XML source files are read from the [lex-au](https://github.com/cchew/lex-au) corpus at `../../lex-au/repo/corpus/xml/` relative to this repo.
 
 ## Setup
 
@@ -51,7 +68,9 @@ If you recreate the venv, re-apply this patch. The engine will fail at runtime w
 
 ## Run the extraction pipeline
 
-Pre-built rule sets are committed to `rules/`. Re-run extraction only if you change the source HTML or prompt:
+Pre-built rule sets are committed to `rules/`. Re-run extraction only if you change the source or prompt.
+
+**HTML domains** (source file required):
 
 ```bash
 python -m src.pipeline --domain eu-ai-act --source data/eu-ai-act.html
@@ -63,10 +82,18 @@ Source HTML files are gitignored. Download them separately:
 - EU AI Act: [EUR-Lex](https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32024R1689)
 - NDB scheme: legislation.gov.au EPUB HTML (Privacy Act 1988, series C2004A03712)
 
+**AKN domains** (reads from lex-au corpus, no `--source` needed):
+
+```bash
+python -m src.pipeline --domain privacy-apps
+python -m src.pipeline --domain ssa-bereavement
+python -m src.pipeline --domain sis-death-benefits
+```
+
 ## Run tests
 
 ```bash
-.venv/bin/pytest          # 33 tests
+.venv/bin/pytest          # 58 tests
 .venv/bin/pytest -v       # verbose
 ```
 
@@ -110,13 +137,3 @@ Provisions requiring these constructs are classified `low` codifiability and ret
 **Codifiability is LLM-assigned, not human-validated.** Classifications have not been independently verified against the source legislation by domain experts.
 
 **Not a compliance tool.** ClauseKit is a demonstration of a pipeline, not legal advice. `matched: true` means the rule's coded condition fired — it does not mean you have a legal obligation. Consult a lawyer.
-
-## Project status
-
-- [x] Ingestion (EUR-Lex HTML, legislation.gov.au EPUB)
-- [x] LLM extraction with JSON Logic conditions
-- [x] Provenance grounding
-- [x] Pre-built rule sets for EU AI Act and NDB
-- [x] FastAPI evaluation endpoint (`src/api.py`)
-- [x] Vue 3 sandbox UI (`web/`)
-- [x] Playwright E2E tests
