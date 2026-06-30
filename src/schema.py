@@ -73,3 +73,15 @@ class RuleResult(BaseModel):
     obligation: str
     docref: Docref
     matched_facts: dict[str, object] | None = None
+
+
+class CompareRequest(BaseModel):
+    domain: str
+    section_id: str
+
+
+class ComparisonResult(BaseModel):
+    domain: str
+    section_id: str
+    plain_rules: list[Rule]
+    akn_rules: list[Rule]

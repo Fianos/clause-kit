@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akomaNtoso xmlns="http://docs.oasis-open.org/legaldocml/ns/akn/3.0">
+  <act name="Privacy Act 1988" contains="singleVersion">
+    <meta>
+      <identification source="#source">
+        <FRBRWork>
+          <FRBRuri value="/akn/au/act/1988/119"/>
+        </FRBRWork>
+      </identification>
+    </meta>
+    <body>
+      <section eId="sec-26WA">
+        <num>26WA</num>
+        <heading>Eligible data breaches</heading>
+        <subsection eId="sec-26WA-subs-1">
+          <num>(1)</num>
+          <content>
+            <p>There is an <term eId="term-eligible-data-breach" refersTo="#eligible-data-breach">eligible data breach</term> of an entity if:</p>
+            <list>
+              <item eId="sec-26WA-subs-1-p1">
+                <num>(a)</num>
+                <p>there is unauthorised access to, or unauthorised disclosure of, one or more of the following that is held by the entity: <term refersTo="#personal-information">personal information</term>; a <term refersTo="#tax-file-number-record">tax file number record</term>; or the information is lost in circumstances where unauthorised access to, or unauthorised disclosure of, the information is likely; and</p>
+              </item>
+              <item eId="sec-26WA-subs-1-p2">
+                <num>(b)</num>
+                <p>a reasonable person would conclude that the access, disclosure or loss would be likely to result in <term refersTo="#serious-harm">serious harm</term> to any of the individuals to whom the information relates.</p>
+              </item>
+            </list>
+          </content>
+        </subsection>
+        <subsection eId="sec-26WA-subs-2">
+          <num>(2)</num>
+          <content>
+            <p>For the purposes of subsection (1), in determining whether a reasonable person would conclude that the access, disclosure or loss would be likely to result in serious harm to any of the individuals to whom the information relates, regard must be had to the following:</p>
+            <list>
+              <item eId="sec-26WA-subs-2-p1"><num>(a)</num><p>the kind or kinds of information involved;</p></item>
+              <item eId="sec-26WA-subs-2-p2"><num>(b)</num><p>the sensitivity of the information;</p></item>
+              <item eId="sec-26WA-subs-2-p3"><num>(c)</num><p>whether the information is protected by one or more security measures;</p></item>
+              <item eId="sec-26WA-subs-2-p4"><num>(d)</num><p>if the information is protected by one or more security measures — the likelihood that any of those security measures could be overcome;</p></item>
+              <item eId="sec-26WA-subs-2-p5"><num>(e)</num><p>the persons, or the kinds of persons, who have obtained, or who could obtain, the information;</p></item>
+              <item eId="sec-26WA-subs-2-p6"><num>(f)</num><p>the nature of the harm that may result;</p></item>
+              <item eId="sec-26WA-subs-2-p7"><num>(g)</num><p>any other relevant matters.</p></item>
+            </list>
+          </content>
+        </subsection>
+      </section>
+    </body>
+  </act>
+</akomaNtoso>
