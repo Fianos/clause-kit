@@ -75,7 +75,6 @@ def extract_rules_from_chunk(
     resp = client.messages.create(
         model="claude-opus-4-8",
         max_tokens=8192,
-        temperature=0,
         system=SYSTEM_PROMPT,
         messages=[{
             "role": "user",
