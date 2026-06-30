@@ -67,8 +67,8 @@ def test_ssa_bereavement_provision_uri_guidance_present():
 def test_sis_death_benefits_allowlist_contains_key_sections():
     allowed = ALLOWLISTS["sis-death-benefits"]
     assert "55a" in allowed
-    assert "68a" in allowed
     assert "68aa" in allowed
+    assert "68a" not in allowed  # trustee conduct, not death benefits
     assert "51" not in allowed
 
 

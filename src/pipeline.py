@@ -63,7 +63,7 @@ DOMAIN_META = {
         "version": "Superannuation Industry (Supervision) Act 1993 (Cth) — death benefit provisions",
         "source_url": "https://www.legislation.gov.au/Details/C2024C00091",
         "corpus_filename": "superannuation-industry-(supervision)-act-1993.xml",
-        "definitions_section_num": "68a",
+        "definitions_section_num": None,
         "chunk_strategy": "section",
         "source_type": "akn",
     },

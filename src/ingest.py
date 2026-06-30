@@ -11,18 +11,20 @@ ALLOWLISTS: dict[str, set[str]] = {
 ALLOWLISTS["ndb-akn"] = ALLOWLISTS["ndb"].copy()
 
 # SSA 1991 — bereavement provisions only
+# 146I does not exist in corpus; 146G/H/J/K are present
 ALLOWLISTS["ssa-bereavement"] = {
     "21",
     "82", "83", "84", "85", "86",
-    "146g", "146h", "146i", "146j", "146k",
+    "146g", "146h", "146j", "146k",
     "238", "239", "240", "241",
     "514a", "514b", "514c", "514d", "514e",
 }
 
 # SIS Act 1993 — death benefit provisions in Part 6
+# 68A in corpus is trustee conduct (goods/services to influence) — not death benefits; excluded
 ALLOWLISTS["sis-death-benefits"] = {
     "55a", "55b", "55c",
-    "68a", "68aa", "68aaa", "68aab", "68aac", "68aad", "68aae", "68aaf",
+    "68aa", "68aaa", "68aab", "68aac", "68aad", "68aae", "68aaf",
 }
 
 # Privacy APPs — Schedule 1 APPs 1-13 (grouped by clause number)
