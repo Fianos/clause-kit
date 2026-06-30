@@ -1,6 +1,8 @@
 import pytest
+from unittest.mock import patch
 from fastapi.testclient import TestClient
 from src.api import app
+from src.schema import ComparisonResult
 
 client = TestClient(app)
 
@@ -115,9 +117,6 @@ def test_get_rules_unknown_domain_404():
     r = client.get("/domains/invalid/rules")
     assert r.status_code == 404
 
-
-from unittest.mock import patch
-from src.schema import ComparisonResult
 
 MOCK_COMPARISON = ComparisonResult(
     domain="ndb", section_id="26wa", plain_rules=[], akn_rules=[]

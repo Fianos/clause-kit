@@ -1,8 +1,9 @@
 from __future__ import annotations
 import re
+import warnings
 from pathlib import Path
 import anthropic
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 from src.extract import extract_rules_from_chunk
 from src.schema import ComparisonResult
 
@@ -20,7 +21,9 @@ def _strip_xml_tags(xml: str) -> str:
 
 
 def _extract_label(xml: str) -> str:
-    soup = BeautifulSoup(xml, "html.parser")
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
+        soup = BeautifulSoup(xml, "html.parser")
     num = soup.find("num")
     heading = soup.find("heading")
     parts = []

@@ -84,7 +84,7 @@ async function runEvaluate() {
       </nav>
     </header>
 
-    <div v-if="error" class="error-banner">{{ error }}</div>
+    <div v-if="error && mode === 'evaluate'" class="error-banner">{{ error }}</div>
 
     <main class="main" v-if="mode === 'evaluate'">
       <aside class="sidebar">

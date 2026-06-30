@@ -1,6 +1,7 @@
 from __future__ import annotations
+import re
 from typing import Literal
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 
 class Docref(BaseModel):
@@ -76,8 +77,15 @@ class RuleResult(BaseModel):
 
 
 class CompareRequest(BaseModel):
-    domain: str
+    domain: Literal["ndb", "eu-ai-act"]
     section_id: str
+
+    @field_validator("section_id")
+    @classmethod
+    def section_id_safe(cls, v: str) -> str:
+        if not re.match(r"^[a-zA-Z0-9-]+$", v):
+            raise ValueError("section_id must be alphanumeric/hyphen only")
+        return v
 
 
 class ComparisonResult(BaseModel):
