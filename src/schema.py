@@ -78,6 +78,15 @@ class PrivacyAppsFacts(BaseModel):
     overseas_recipient_oecd_comparable: bool = False
 
 
+class SsaBereavementFacts(BaseModel):
+    payment_type: Literal[
+        "bereavement_allowance", "austudy", "youth_allowance", "age_pension", "carer_payment"
+    ] = "age_pension"
+    relationship_to_deceased: Literal["partner", "carer", "dependent_child"] = "partner"
+    claimant_notified_centrelink: bool = False
+    within_notification_period: bool = False
+
+
 class RuleResult(BaseModel):
     rule_id: str
     matched: bool | None     # None = low codifiability, excluded from engine

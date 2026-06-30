@@ -40,3 +40,25 @@ def test_ssa_bereavement_domain_meta_present():
 def test_sis_death_benefits_domain_meta_present():
     assert "sis-death-benefits" in DOMAIN_META
     assert DOMAIN_META["sis-death-benefits"]["source_type"] == "akn"
+
+
+def test_ssa_bereavement_allowlist_contains_key_sections():
+    allowed = ALLOWLISTS["ssa-bereavement"]
+    assert "21" in allowed
+    assert "82" in allowed
+    assert "83" in allowed
+    assert "146g" in allowed
+    assert "514a" in allowed
+    assert "1065" not in allowed
+
+
+def test_ssa_bereavement_fact_schema_present():
+    schema = DOMAIN_FACT_SCHEMAS["ssa-bereavement"]
+    assert "payment_type" in schema
+    assert "relationship_to_deceased" in schema
+    assert "claimant_notified_centrelink" in schema
+
+
+def test_ssa_bereavement_provision_uri_guidance_present():
+    guidance = DOMAIN_PROVISION_URI_GUIDANCE["ssa-bereavement"]
+    assert "/akn/au/act/1991/46/section/" in guidance
