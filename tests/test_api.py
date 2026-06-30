@@ -114,3 +114,28 @@ def test_evaluate_unknown_domain_404():
 def test_get_rules_unknown_domain_404():
     r = client.get("/domains/invalid/rules")
     assert r.status_code == 404
+
+
+from unittest.mock import patch
+from src.schema import ComparisonResult
+
+MOCK_COMPARISON = ComparisonResult(
+    domain="ndb", section_id="26wa", plain_rules=[], akn_rules=[]
+)
+
+
+def test_compare_returns_result():
+    with patch("src.api.run_comparison", return_value=MOCK_COMPARISON):
+        r = client.post("/compare", json={"domain": "ndb", "section_id": "26wa"})
+    assert r.status_code == 200
+    data = r.json()
+    assert data["domain"] == "ndb"
+    assert data["section_id"] == "26wa"
+    assert isinstance(data["plain_rules"], list)
+    assert isinstance(data["akn_rules"], list)
+
+
+def test_compare_missing_section_returns_404():
+    with patch("src.api.run_comparison", side_effect=FileNotFoundError("not found")):
+        r = client.post("/compare", json={"domain": "ndb", "section_id": "99zz"})
+    assert r.status_code == 404

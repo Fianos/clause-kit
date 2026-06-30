@@ -3,8 +3,9 @@ from pathlib import Path
 from fastapi import Body, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
+from src.compare import run_comparison
 from src.engine import evaluate_all
-from src.schema import DomainFile, RuleResult
+from src.schema import CompareRequest, ComparisonResult, DomainFile, RuleResult
 
 app = FastAPI(title="ClauseKit API")
 app.add_middleware(
@@ -44,3 +45,11 @@ def get_scenarios(domain: str) -> list[dict]:
 def evaluate(domain: str, facts: dict = Body(...)) -> list[RuleResult]:
     df = _load_domain(domain)
     return evaluate_all(df.rules, facts)
+
+
+@app.post("/compare")
+def compare(request: CompareRequest) -> ComparisonResult:
+    try:
+        return run_comparison(request.section_id, request.domain)
+    except FileNotFoundError as e:
+        raise HTTPException(status_code=404, detail=str(e))
