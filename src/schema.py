@@ -87,6 +87,13 @@ class SsaBereavementFacts(BaseModel):
     within_notification_period: bool = False
 
 
+class SisDeathBenefitsFacts(BaseModel):
+    member_status: Literal["accumulation", "pension_phase"] = "accumulation"
+    death_benefit_nomination: Literal["binding", "non_binding", "none"] = "none"
+    beneficiary_type: Literal["dependant", "legal_personal_representative", "estate"] = "dependant"
+    fund_type: Literal["apra", "smsf"] = "apra"
+
+
 class RuleResult(BaseModel):
     rule_id: str
     matched: bool | None     # None = low codifiability, excluded from engine

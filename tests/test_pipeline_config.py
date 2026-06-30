@@ -62,3 +62,23 @@ def test_ssa_bereavement_fact_schema_present():
 def test_ssa_bereavement_provision_uri_guidance_present():
     guidance = DOMAIN_PROVISION_URI_GUIDANCE["ssa-bereavement"]
     assert "/akn/au/act/1991/46/section/" in guidance
+
+
+def test_sis_death_benefits_allowlist_contains_key_sections():
+    allowed = ALLOWLISTS["sis-death-benefits"]
+    assert "55a" in allowed
+    assert "68a" in allowed
+    assert "68aa" in allowed
+    assert "51" not in allowed
+
+
+def test_sis_death_benefits_fact_schema_present():
+    schema = DOMAIN_FACT_SCHEMAS["sis-death-benefits"]
+    assert "member_status" in schema
+    assert "death_benefit_nomination" in schema
+    assert "beneficiary_type" in schema
+
+
+def test_sis_death_benefits_provision_uri_guidance_present():
+    guidance = DOMAIN_PROVISION_URI_GUIDANCE["sis-death-benefits"]
+    assert "/akn/au/act/1993/78/section/" in guidance
