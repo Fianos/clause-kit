@@ -66,6 +66,18 @@ class NdbFacts(BaseModel):
     individual_vulnerability: Literal["general", "elderly", "children", "health_patients"] = "general"
 
 
+class PrivacyAppsFacts(BaseModel):
+    entity_type: Literal[
+        "app_entity", "small_business", "contracted_service_provider", "employee_record_exempt"
+    ] = "app_entity"
+    data_category: Literal["sensitive", "health", "financial", "biometric", "general"] = "general"
+    purpose: Literal["primary", "secondary", "direct_marketing", "law_enforcement"] = "primary"
+    consent_given: bool = False
+    individual_requested_access: bool = False
+    cross_border_disclosure: bool = False
+    overseas_recipient_oecd_comparable: bool = False
+
+
 class RuleResult(BaseModel):
     rule_id: str
     matched: bool | None     # None = low codifiability, excluded from engine
