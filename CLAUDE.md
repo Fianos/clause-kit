@@ -1,7 +1,6 @@
 # ClauseKit
 
-LLM-to-Rules-as-Code pipeline demo. See spec at:
-docs/superpowers/specs/2026-06-14-clausekit-design.md
+LLM-to-Rules-as-Code pipeline demo.
 
 ## Running locally
 
