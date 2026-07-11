@@ -2,13 +2,19 @@
 
 Convert legislation into evaluatable rules using an LLM extraction pipeline. Runs conditions as [JSON Logic](https://jsonlogic.com/) against a typed fact schema, with provenance grounding back to the source article.
 
-**Status: v0.3.0** — EU AI Act and NDB rules committed; Privacy APPs, SSA bereavement, and SIS death benefits schemas ready, extraction deferred.
+**Status: v0.3.0** - EU AI Act and NDB rules available. Privacy APPs, SSA bereavement, SIS death benefits schemas created but rules not extracted.
+
+## Uses
+
+- **Depends on (AKN domains only):** [lex-au](https://github.com/cchew/lex-au) (AKN 3.0 XML corpus; HTML domains like EU AI Act and NDB ingest directly from source HTML instead, no lex-au dependency)
+
+Full stack map: [lex-au-search's `STACK.md`](https://github.com/cchew/lex-au-search/blob/main/STACK.md) and [lex-au's `FUTURE.md`](https://github.com/cchew/lex-au/blob/main/FUTURE.md).
 
 ## Versions
 
-- **v0.3.0** — 2026-06-30: AKN XML ingest path (`chunk_by_section_akn`, `chunk_by_schedule_clause`); pipeline branching on source type; Privacy APPs, SSA bereavement, SIS death benefits domain schemas and fact models. Extraction runs deferred.
-- **v0.2.0** — 2026-06-30: AKN vs plain-text comparison (`POST /compare`, `ComparePane.vue`). Validates that AKN path captures all incident types where plain-text misses branching (NDB s.26WA).
-- **v0.1.0** — 2026-06-19: EU AI Act and NDB scheme extraction, JSON Logic engine, provenance grounding, FastAPI, Vue 3 sandbox UI, Playwright E2E tests.
+- **v0.3.0** - AKN XML ingest path; Privacy APPs, SSA bereavement, SIS death benefits schemas (extraction deferred).
+- **v0.2.0** - AKN vs plain-text comparison mode, validated against NDB s.26WA branching.
+- **v0.1.0** - EU AI Act and NDB scheme extraction, JSON Logic engine, provenance grounding, FastAPI, Vue 3 sandbox.
 
 ## Domains
 
@@ -16,9 +22,9 @@ Convert legislation into evaluatable rules using an LLM extraction pipeline. Run
 |---|---|---|---|
 | EU AI Act | Regulation (EU) 2024/1689, Arts 5, 6, Annex I, III | 32 | 5 |
 | NDB scheme | Privacy Act 1988 (Cth), ss.26WA-26WR | 54 | 4 |
-| Privacy APPs | Privacy Act 1988 (Cth), Schedule 1 (APPs 1-13) | pending | — |
-| SSA bereavement | Social Security Act 1991 (Cth), bereavement provisions | pending | — |
-| SIS death benefits | Superannuation Industry (Supervision) Act 1993 (Cth), ss.55A-55C, 68AA-68AAF | pending | — |
+| Privacy APPs | Privacy Act 1988 (Cth), Schedule 1 (APPs 1-13) | pending | - |
+| SSA bereavement | Social Security Act 1991 (Cth), bereavement provisions | pending | - |
+| SIS death benefits | Superannuation Industry (Supervision) Act 1993 (Cth), ss.55A-55C, 68AA-68AAF | pending | - |
 
 ## Architecture
 
@@ -42,7 +48,12 @@ legislation source
    web/               Vue 3 sandbox UI (fact form → matched rules)
 ```
 
-AKN XML source files are read from the [lex-au](https://github.com/cchew/lex-au) corpus at `../../lex-au/repo/corpus/xml/` relative to this repo.
+AKN XML source files are read from the`corpus/xml/` directory, downloaded directly from [Hugging Face](https://huggingface.co/datasets/cchew/lex-au):
+
+```bash
+pip install huggingface_hub
+python -c "from huggingface_hub import snapshot_download; snapshot_download(repo_id='cchew/lex-au', repo_type='dataset', local_dir='../../lex-au/repo/corpus', allow_patterns='xml/*')"
+```
 
 ## Setup
 
@@ -132,8 +143,8 @@ Each rule in `rules/{domain}.json`:
 
 Provisions requiring these constructs are classified `low` codifiability and return `matched: null`.
 
-**Fact schema bounds expressiveness.** The fact schema is defined before extraction runs. The LLM can only produce conditions over the variables in the schema — it cannot discover new variables. Rules whose trigger conditions fall outside the schema are classified `low` regardless of their legislative clarity.
+**Fact schema bounds expressiveness.** The fact schema is defined before extraction runs. The LLM can only produce conditions over the variables in the schema - it cannot discover new variables. Rules whose trigger conditions fall outside the schema are classified `low` regardless of their legislative clarity.
 
 **Codifiability is LLM-assigned, not human-validated.** Classifications have not been independently verified against the source legislation by domain experts.
 
-**Not a compliance tool.** ClauseKit is a demonstration of a pipeline, not legal advice. `matched: true` means the rule's coded condition fired — it does not mean you have a legal obligation. Consult a lawyer.
+**Not a compliance tool.** ClauseKit is a demonstration of a pipeline, not legal advice. `matched: true` means the rule's coded condition fired - it does not mean you have a legal obligation. Consult a lawyer.
